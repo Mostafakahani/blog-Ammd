@@ -1,0 +1,417 @@
+* {
+  font-family: Peyda;
+  direction: rtl;
+  text-decoration-line: none !important;
+  align-items: center !important;
+}
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    #16abff33 0deg,
+    #0885ff33 55deg,
+    #54d6ff33 120deg,
+    #0071ff33 160deg,
+    transparent 360deg
+  );
+  --secondary-glow: radial-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(
+    #00000080,
+    #00000040,
+    #00000030,
+    #00000020,
+    #00000010,
+    #00000010,
+    #00000080
+  );
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --secondary-glow: linear-gradient(
+      to bottom right,
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0.3)
+    );
+
+    --tile-start-rgb: 2, 13, 46;
+    --tile-end-rgb: 2, 5, 19;
+    --tile-border: conic-gradient(
+      #ffffff80,
+      #ffffff40,
+      #ffffff30,
+      #ffffff20,
+      #ffffff10,
+      #ffffff10,
+      #ffffff80
+    );
+
+    --callout-rgb: 20, 20, 20;
+    --callout-border-rgb: 108, 108, 108;
+    --card-rgb: 100, 100, 100;
+    --card-border-rgb: 200, 200, 200;
+  }
+}
+
+@font-face {
+  font-family: Peyda;
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/Peyda-Light.eot");
+  src: url("fonts/Peyda-Light.woff") format("woff"),
+    url("fonts/Peyda-Light.ttf") format("ttf"),
+    url("fonts/Peyda-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Peyda;
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Peyda-Regular.eot");
+  src: url("fonts/Peyda-Regular.woff") format("woff"),
+    url("fonts/Peyda-Regular.ttf") format("ttf"),
+    url("fonts/Peyda-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Peyda;
+  font-style: normal;
+  font-weight: 950;
+  src: url("fonts/Peyda-Black.eot");
+  src: url("fonts/Peyda-Black.woff") format("woff"),
+    url("fonts/Peyda-Black.ttf") format("ttf"),
+    url("fonts/Peyda-Black.woff2") format("woff2");
+}
+
+body {
+  padding: 0px;
+  margin: 5rem;
+  font-family: Peyda;
+  color: #fff;
+  /* background-color: #000000 ; */
+  font-size: 2rem;
+  background: #0A1929  !important;
+  /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,75,1) 29%, rgba(0,22,27,1) 100%) !important; */
+
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(255, 18, 18, 0);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0E0E0E;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #161616;
+}
+
+a,
+.aa {
+  color: #fff;
+  text-decoration: none;
+}
+
+.circal {
+  top: 10%;
+  border-radius: 100%;
+  align-items: center;
+  text-align: center;
+  width: 30%;
+  position: absolute;
+  left: 25%;
+  height: 55%;
+  background: #00143b;
+  filter: blur(150px);
+  z-index: 1;
+}
+.circal2 {
+  top: 10%;
+  border-radius: 100%;
+  align-items: center;
+  text-align: center;
+  width: 12%;
+  position: absolute;
+  right: 20%;
+  height: 55%;
+  background: #00143b;
+  filter: blur(127px);
+  z-index: 1;
+}
+
+.bg-card-me {
+  text-align: center;
+  border-radius: 10px;
+  margin: 1%;
+  padding-top: 50px;
+  backdrop-filter: blur(49.5px);
+  padding: 58px !important;
+  /* --b: 0.1em;
+  --c: #1095c1; */
+  color: #fff;
+  /* padding-block: var(--b);
+  background:
+    linear-gradient(var(--c) 50%, #1e1e1e7a 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+  background-clip: text, padding-box;
+  transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s)); */
+
+}
+
+.gid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(33%, auto));
+  width: 1100px;
+  max-width: 100%;
+}
+
+.gid1 {
+  display: grid !important;
+  grid-template-columns: repeat(1, minmax(33%, auto));
+  width: 1100px;
+  max-width: 100%;
+}
+
+.span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+.span:hover {
+  transform: translateX(4px);
+}
+@media (hover: hover) and (pointer: fine){
+  .spn:hover .spn{
+    transform: translateX(4px);
+  }
+}
+
+/* .bg-card-me:hover {
+  --_p: 100%;
+  --_s: .3s;
+  color: #fff;
+
+} */
+.bg-types-me {
+  border-radius: var(--border-radius);
+  background: rgb(100, 100, 100, 0) !important;
+  border: 1px solid rgb(200, 200, 200, 0) !important;
+z-index: 1;
+}
+.bg-me {
+  border-radius: var(--border-radius);
+  border: 1px solid rgb(200, 200, 200, 0) !important;
+  z-index: 1;
+}
+.bg-card-me:hover {
+  color: #fff;
+  background: rgb(100, 100, 100, 0.1) !important;
+  border: 1px solid rgb(200, 200, 200, 0.15) !important;
+}
+
+/* @keyframes bg-card-me {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+} */
+/* .hover-3 {
+  --b: 0.1em;
+  --c: #1095c1;
+
+  color: #0000;
+  padding-block: var(--b);
+  background:
+    linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s));
+
+}
+
+.hover-3:hover {
+  --_p: 100%;
+  --_s: .3s;
+} */
+section{
+  z-index: 1;
+}
+p {
+  font-size: 18px;
+  padding-right: 3% !important;
+  text-align: justify;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  line-height: 30px;
+  z-index: 1;
+}
+
+h3 {
+  padding-right: 3% !important;
+  color: #fff;
+  z-index: 1;
+}
+
+.bg-types-me {
+  border-radius: 10px;
+  margin: 1%;
+  padding-top: 50px;
+  color: #fff;
+  background: rgba(30, 30, 30, 0.48);
+  backdrop-filter: blur(49.5px);
+  padding-right: 5px;
+  /* box-shadow: 0 0 30px 0 #121212; */
+
+}
+
+.imgs {
+  width: 100%;
+  height: 100%;
+}
+
+.imgMargin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 960px) {
+  .imgs {
+    width: 50%;
+    height: 100%;
+  }
+  .imgsIphone {
+    width: 30%;
+    height: 100%;
+  }
+
+  .txtPh {
+    padding: none !important;
+  }
+
+
+}
+
+
+
+/* @media only screen and (max-width: 990px) {
+  .btn-dl-me {
+    margin-bottom: 7%;
+  }
+
+
+} */
+
+.tabUp {
+  background-color: #030212;
+  border-radius: 15px;
+  margin: 50px !important;
+  border: solid 0.5px #fff;
+}
+
+.tabDown {
+  background-color: #030212;
+  border-radius: 15px;
+  margin-left: 50px !important;
+  margin-right: 50px !important;
+  margin-top: 20px !important;
+  border: solid 0.5px #fff;
+}
+
+.p-2 {
+  padding: none !important;
+}
+
+.btn-dl-me {
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  background: rgba(78, 78, 78, 0.48);
+  border: 0.56px solid #FFFFFF;
+  backdrop-filter: blur(49.5px);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.btn-dl-me:hover {
+  color: #fff;
+  background-color: #02020e;
+  transition: .3s;
+
+}
+
+.back-arrow {
+  border-radius: 100%;
+}
+
+.back-arrow:hover {
+  background-color: #2f2f2f;
+  transition: .3s;
+}
+
+
+
+
+
+
+
+
+.card {
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+}
+
+.card span {
+  display: inline-block;
+  transition: transform 200ms;
+}
+
+.card h2 {
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.card p {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 34ch;
+}

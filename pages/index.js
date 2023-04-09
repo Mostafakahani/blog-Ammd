@@ -63,8 +63,8 @@ export default function Home() {
             </Container>
 
             <Container container="true">
-                <Stack mt={4} direction="row" justifyContent="center" spacing={2}>
-                    <Grid >
+                <Grid mt={3} container spacing={1} columns={16} justifyContent='center' textAlign='center'>
+                    <Grid item sm={2} xs={12}>
                         <Button sx={{
                             ":hover": {
                                 bgcolor: "#1976d280",
@@ -74,7 +74,7 @@ export default function Home() {
                             Telegram
                         </Button>
                     </Grid>
-                    <Grid >
+                    <Grid item sm={2} xs={12}>
                         <Button sx={{
                             ":hover": {
                                 bgcolor: "#2e7d3280",
@@ -84,7 +84,7 @@ export default function Home() {
                             GitHub
                         </Button>
                     </Grid>
-                    <Grid>
+                    <Grid item sm={2} xs={12}>
                         <Button variant="outlined" sx={{
                             ":hover": {
                                 bgcolor: "#9c27b080",
@@ -94,23 +94,24 @@ export default function Home() {
                             Instagram
                         </Button>
                     </Grid>
-                </Stack >
+                </Grid>
             </Container>
             <br />
             <br />
+            <Container container spacing={2} >
+                <Grid container="true" columns={16} textAlign='center' sx={{ bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
+                    <Grid sm={8} xs={16} alignItems='center' textAlign='center'>
+                        <Image className='img' width={150} height={150} src={ImgLogo} alt='logo'></Image>
 
-            <Grid container="true" spacing={2} columns={16} textAlign='center' sx={{ bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
-                <Grid sm={8} xs={16} alignItems='center' textAlign='center'>
-                    <Image className='img' width={150} height={150} src={ImgLogo} alt='logo'></Image>
-
+                    </Grid>
+                    <Grid sm={8} xs={16}>
+                        <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        </Paper>
+                    </Grid>
                 </Grid>
-                <Grid sm={8} xs={16}>
-                    <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    </Paper>
-                </Grid>
-            </Grid>
+            </Container>
             <Box
                 sx={{
                     display: 'flex',

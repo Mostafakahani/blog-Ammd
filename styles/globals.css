@@ -1,8 +1,8 @@
 * {
   font-family: Peyda;
-  direction: rtl;
+  /* direction: rtl; */
   text-decoration-line: none !important;
-  align-items: center !important;
+  align-items: center ;
 }
 :root {
   --max-width: 1100px;
@@ -116,7 +116,7 @@ body {
   color: #fff;
   /* background-color: #000000 ; */
   font-size: 2rem;
-  background: #0A1929  !important;
+  background: #1A0B2E  !important;
   /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,75,1) 29%, rgba(0,22,27,1) 100%) !important; */
 
 }
@@ -414,4 +414,7 @@ h3 {
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 34ch;
+}
+.img{
+  border-radius: 100%;
 }

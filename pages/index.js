@@ -42,8 +42,8 @@ export default function Home() {
             <Container container sx={{ bgcolor: '#1A0B2E', textAlign: 'center' }}>
                 <Grid>
                     <Grid mt={5} style={{ color: '#fff' }}>
-                        <Stack direction="row" justifyContent='center'>
-                            <Avatar sx={{ width: 150, height: 150 }} src="https://my-portfolio-behroz.iran.liara.run/myLogo.jpg" />
+                        <   Stack direction="row" justifyContent='center'>
+                            <Avatar sx={{ width: 150, height: 150 }} src={ImgLogo.src} />
 
                         </Stack>
                         {/* <Image className='img' width={150} height={150} src={ImgLogo} alt='logo' /> */}
@@ -63,8 +63,8 @@ export default function Home() {
             </Container>
 
             <Container container="true">
-                <Grid mt={3} container spacing={1} columns={16} justifyContent='center' textAlign='center'>
-                    <Grid item sm={2} xs={12}>
+                <Grid mt={3} container spacing={2} columns={16} justifyContent='center' textAlign='center'>
+                    <Grid sm={2} xs={12}>
                         <Button sx={{
                             ":hover": {
                                 bgcolor: "#1976d280",
@@ -74,7 +74,7 @@ export default function Home() {
                             Telegram
                         </Button>
                     </Grid>
-                    <Grid item sm={2} xs={12}>
+                    <Grid sm={2} xs={12}>
                         <Button sx={{
                             ":hover": {
                                 bgcolor: "#2e7d3280",
@@ -84,7 +84,7 @@ export default function Home() {
                             GitHub
                         </Button>
                     </Grid>
-                    <Grid item sm={2} xs={12}>
+                    <Grid sm={2} xs={12}>
                         <Button variant="outlined" sx={{
                             ":hover": {
                                 bgcolor: "#9c27b080",
@@ -99,10 +99,9 @@ export default function Home() {
             <br />
             <br />
             <Container container spacing={2} >
-                <Grid container="true" columns={16} textAlign='center' sx={{ bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
-                    <Grid sm={8} xs={16} alignItems='center' textAlign='center'>
-                        <Image className='img' width={150} height={150} src={ImgLogo} alt='logo'></Image>
-
+                <Grid container="true" columns={16} textAlign='center' sx={{ borderRadius: '10px', bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
+                    <Grid sm={8} xs={16} mt={2} alignItems='center' textAlign='center'>
+                        <Image style={{ borderRadius: '10px', width: '40%', height: "100%" }} width={150} height={150} src={ImgLogo} alt='logo'></Image>
                     </Grid>
                     <Grid sm={8} xs={16}>
                         <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
@@ -112,21 +111,25 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Container>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    '& > :not(style)': {
-                        m: 1,
-                        width: 128,
-                        height: 128,
-                        bgcolor: '#fff0'
-                    },
-                }}
-            >
-                <Paper elevation={0} >s
-                </Paper >
-            </Box>
+            <Container container="true">
+                <Grid mt={2} columns={16} textAlign='center' sx={{ borderRadius: '10px', bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
+                    <Grid sm={8} xs={16} mt={2}>
+                        s
+
+                    </Grid>
+                    <Grid>
+                        s
+
+                    </Grid>
+                    <Grid>
+
+                    </Grid>
+
+
+                </Grid>
+
+            </Container>
+
 
 
 

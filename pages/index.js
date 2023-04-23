@@ -39,12 +39,12 @@ export default function Home() {
     return (
         <>
             <CssBaseline />
+            
             <Container container sx={{ bgcolor: '#1A0B2E', textAlign: 'center' }}>
                 <Grid>
                     <Grid mt={5} style={{ color: '#fff' }}>
                         <Stack direction="row" justifyContent='center'>
-                            <Avatar sx={{ width: 150, height: 150 }} src="https://my-portfolio-behroz.iran.liara.run/myLogo.jpg" />
-
+                            <Avatar sx={{ width: 150, height: 150 }} src={ImgLogo.src} />
                         </Stack>
                         {/* <Image className='img' width={150} height={150} src={ImgLogo} alt='logo' /> */}
                         <Grid mt={3} >
@@ -61,7 +61,34 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Container>
-
+            <Container container >
+                <Stack direction="row" container spacing={2} mt={2} justifyContent='center' sx={{ color: "#fff" }}>
+                    <Button sx={{
+                        ":hover": {
+                            bgcolor: "#1976d280",
+                            color: "white"
+                        }
+                    }} variant="outlined" color="primary" href='#'><TelegramIcon />
+                    </Button>
+                    <Button variant="outlined" sx={{
+                        ":hover": {
+                            bgcolor: "#9c27b080",
+                            color: "white"
+                        }
+                    }} color="secondary" href='#'>
+                        <InstagramIcon />
+                    </Button>
+                    <Button sx={{
+                        ":hover": {
+                            bgcolor: "#2e7d3280",
+                            color: "white"
+                        }
+                    }} variant="outlined" color="success" href='#'>
+                        <GitHubIcon />
+                    </Button>
+                </Stack>
+            </Container>
+            {/* 
             <Container container="true">
                 <Grid mt={3} container spacing={1} columns={16} justifyContent='center' textAlign='center'>
                     <Grid item sm={2} xs={12}>
@@ -95,13 +122,13 @@ export default function Home() {
                         </Button>
                     </Grid>
                 </Grid>
-            </Container>
+            </Container> */}
             <br />
             <br />
             <Container container spacing={2} >
                 <Grid container="true" columns={16} textAlign='center' sx={{ bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
                     <Grid sm={8} xs={16} alignItems='center' textAlign='center'>
-                        <Image className='img' width={150} height={150} src={ImgLogo} alt='logo'></Image>
+                        <Image className='img' width={150} height={150} src={ImgLogo.src} alt='logo'></Image>
 
                     </Grid>
                     <Grid sm={8} xs={16}>

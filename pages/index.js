@@ -111,23 +111,19 @@ export default function Home() {
                     </Grid>
                 </Grid>
             </Container>
-            <Container container="true">
-                <Grid mt={2} columns={16} textAlign='center' sx={{ borderRadius: '10px', bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
-                    <Grid sm={8} xs={16} mt={2}>
-                        s
+            <Container container spacing={2} >
+                <Grid container="true"  columns={16} textAlign='center' sx={{ borderRadius: '10px', bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
+                    <Grid sm={8} xs={16} mt={2} alignItems='center' textAlign='center'>
+                        <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        </Paper>
+                    </Grid>
+                    <Grid sm={8} xs={16}>
+                        <Image style={{ borderRadius: '10px', width: '40%', height: "100%" }} width={150} height={150} src={ImgLogo} alt='logo'></Image>
 
                     </Grid>
-                    <Grid>
-                        s
-
-                    </Grid>
-                    <Grid>
-
-                    </Grid>
-
-
                 </Grid>
-
             </Container>
 
 

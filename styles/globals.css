@@ -1,6 +1,6 @@
 * {
   font-family: Peyda;
-  /* direction: rtl; */
+  direction: rtl;
   text-decoration-line: none !important;
   align-items: center ;
 }
@@ -274,7 +274,6 @@ section{
 }
 p {
   font-size: 18px;
-  padding-right: 3% !important;
   text-align: justify;
   padding-top: 2%;
   padding-bottom: 2%;

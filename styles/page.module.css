@@ -74,7 +74,7 @@
     border: 1px solid rgba(var(--card-border-rgb), 0);
     transition: background 200ms, border 200ms;
     margin: 10px;
-
+    box-shadow: 0px 1px 30px 1px rgb(0 0 0 / 21%);
 }
 
 .card2 {
@@ -160,6 +160,7 @@
     position: relative;
 }
 
+
 .thirteen {
     display: flex;
     justify-content: center;
@@ -174,7 +175,27 @@
     color: #fff;
     box-shadow: 0px 2px 8px -1px #0000001a;
 }
-
+.thirteen2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(0);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0px 2px 8px -1px #0000001a;
+    padding: 1rem 1.2rem;
+    background: rgba(var(--card-rgb), 0);
+    border: 1px solid rgba(var(--card-border-rgb), 0);
+    transition: background 200ms, border 200ms;
+    margin: 10px;
+}
+.thirteen2::before,
+.thirteen2::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
 .thirteen::before,
 .thirteen::after {
     content: '';
@@ -183,6 +204,12 @@
 }
 
 /* Conic Gradient Animation */
+.thirteen2::before {
+    animation: 6s rotate linear infinite;
+    width: 250%;
+    height: 440%;
+    background: var(--tile-border);
+}
 .thirteen::before {
     animation: 6s rotate linear infinite;
     width: 250%;
@@ -191,6 +218,15 @@
 }
 
 /* Inner Square */
+.thirteen2::after {
+    inset: 0;
+    padding: 1px;
+    border-radius: var(--border-radius);
+    background: linear-gradient(to bottom right,
+            rgba(var(--tile-start-rgb), 1),
+            rgba(var(--tile-end-rgb), 1));
+    background-clip: content-box;
+}
 .thirteen::after {
     inset: 0;
     padding: 1px;
@@ -215,6 +251,9 @@
 
 @media (prefers-reduced-motion) {
     .thirteen::before {
+        animation: none;
+    }
+    .thirteen2::before {
         animation: none;
     }
 
@@ -304,6 +343,7 @@
     .thirteen img {
         filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
     }
+
 }
 
 @keyframes rotate {

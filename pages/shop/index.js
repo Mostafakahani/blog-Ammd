@@ -22,11 +22,12 @@ const Shop = () => {
 
     ]);
     const content = allData.map((post, index) =>
-        <div className={styles.card} key={index}>
+
+        <div className={styles.thirteen2} key={index}>
             <div className={styles.card2}>
                 <Image src={post.imgProduct.src} width={330} height={192} className={styles.img} />
                 <h5 className={styles.h5}>{post.title}</h5>
-                <p className={styles.description} style={{ color: '#fff' }}><p> {post.amount} تومان</p> </p>
+                <p className={styles.description} style={{ color: '#fff' }}> {post.amount} تومان </p>
                 <p className={styles.description} style={{ color: '#fff' }}> <button className={styles.btn}>
                     {post.link}
                 </button>

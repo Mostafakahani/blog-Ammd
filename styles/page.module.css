@@ -103,6 +103,25 @@
     border: 1px solid rgba(var(--card-border-rgb), 0);
     transition: background 200ms, border 200ms;
 }
+.input{
+    min-width: 100%;
+    min-height: 60px;
+    color: #fff;
+    background-color: #061136;
+    border-radius: var(--border-radius);
+    border: solid 0.5px #ffffff40 !important;
+    transition: background 200ms, border 200ms;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.input:hover{
+    background-color: #081747;
+    transition: background 200ms, border 200ms;
+}
+.input:focus{
+    background-color: #081747;
+    transition: background 200ms, border 200ms;
+}
 
 .card span {
     display: inline-block;

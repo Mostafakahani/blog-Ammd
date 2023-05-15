@@ -8,11 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 // const inter = Inter({ subsets: ['latin'] })
 import upImg from '@/pages/imgs/01.webp'
 import midImg from '@/pages/imgs/mark-dinn.webp'
-
+import fs from 'fs/promises'
+import path from 'path';
 import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
-export default function Home() {
+export default function Home(props) {
     const handleservtest = () => {
         alert('در دسترس نمی باشد.');
     }
@@ -35,17 +36,19 @@ export default function Home() {
 
 
     ]);
-    const dataPost = post.map((x, index) => {
+    const { posts } = props
+
+    const dataPost = posts.map((x, index) => {
         return (
             <>
                 <div className='col-sm-6 section-post' key={index}>
                     <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Image src={upImg} className='imgUp' />
+                        <Image src={upImg} className='imgUp' alt='img' height='100%' />
                     </div>
                     <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
                         <li className='col-5'>
-                            <a className=" items-center hover:text-primary profiles " href="/authors/mark-dinn">
-                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} src={x.image} />
+                            <a className=" items-center hover:text-primary profiles ">
+                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={midImg} />
                                 <span className='profile-text text-muted'> {x.wirter}</span>
                             </a>
                         </li>
@@ -67,6 +70,14 @@ export default function Home() {
 
     })
 
+    const data1 = posts.map((item) => {
+        return (
+            <li key={item.id}>{item.titel}</li>
+        )
+    })
+
+
+
 
 
     return (
@@ -76,7 +87,21 @@ export default function Home() {
                 <div className='row'>
                     {dataPost}
                 </div>
+                {data1}
+
             </div>
         </>
     )
+}
+
+export async function getStaticProps() {
+    const filePath = path.join(process.cwd(), 'data', 'posts.json')
+    const jsonData = await fs.readFile(filePath)
+    const data = JSON.parse(jsonData)
+
+    return {
+        props: {
+            posts: data.posts,
+        },
+    }
 }

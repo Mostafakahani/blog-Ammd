@@ -4,7 +4,7 @@ import styles from '@/styles/page.module.css'
 import Image from 'next/image';
 import imgP from '@/pages/shop/imgs/gun.png'
 import Shop from '..';
-const AddProduct = () => {
+const AddProduct = (props) => {
 
     const [inputValueName, setInputValueName] = useState('');
     const [inputValueAmount, setInputValueAmount] = useState(0);
@@ -12,11 +12,7 @@ const AddProduct = () => {
     const [inputValueFlout, setInputValueFlout] = useState(0);
     const [inputValueDate, setInputValueDate] = useState('');
 
-    const [allData, setAllData] = useState([
-        { imgProduct: imgP, title: ' AK-47', amount: 24000, link: 'مشاهده در بازی', flout: 2000, date: 'دوشنبه', buyLink: 'buyLink' },
-        { imgProduct: imgP, title: 'M4A1 ', amount: 29000, link: 'مشاهده در بازی', flout: 2000, date: 'دوشنبه', buyLink: 'buyLink' },
 
-    ]);
     // const [allData, setAllData] = useState([
     //     { imgProduct: imgP, title: ' AK-47', amount: 24000, link: 'مشاهده در بازی', flout: 2000, date: 'دوشنبه', buyLink: 'buyLink' },
     //     { imgProduct: imgP, title: 'M4A1 ', amount: 29000, link: 'مشاهده در بازی', flout: 2000, date: 'دوشنبه', buyLink: 'buyLink' },
@@ -60,19 +56,38 @@ const AddProduct = () => {
         e.preventDefault()
         setInputValueDate(e.target.value)
     }
-    
-    const handleSubmit = () => {
-        const data = [...allData]
+
+    const [allDataSend, setAllDataSend] = useState(props.sendData1);
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const data = [...allDataSend]
         data.push({ imgProduct: imgP, title: inputValueName, amount: inputValueAmount, link: inputValueLink, flout: inputValueFlout, date: inputValueDate, buyLink: 'bu22yLink' });
-        setAllData(data)
+        setAllDataSend(data)
     }
-    <Shop ss="test"/>
+    // <Shop dataSend={allDataSend} />
+    console.log(props.sendData)
+
+    const content = allDataSend?.map((post, index) =>
+    <div className={styles.thirteen2} key={index}>
+        <div className={styles.card2}>
+            <Image src={post.imgProduct.src} width={330} height={192} className={styles.img} />
+            <h5 className={styles.h5}>{post.title}</h5>
+            <p className={styles.description} style={{ color: '#fff' }}> {post.amount} تومان </p>
+            <p className={styles.description} style={{ color: '#fff' }}> <button className={styles.btn}>{post.link}</button></p>
+            <p className={styles.description} style={{ color: '#fff' }}> فلوت:{post.flout} </p>
+            <p className={styles.description} style={{ color: '#fff' }}> ارسال: {post.date}</p>
+            <p className={styles.description} style={{ color: '#fff' }}>{post.buyLink}</p>
+            <button className={styles.btn}>خرید</button>
+        </div>
+    </div>
+);
+
     return (
         <div >
             <hr />
             <div className={styles.grid}>
                 <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
-                    {/* {content} */}
+                    {content}
                 </div>
             </div>
             {/* <div className={styles.grid}>

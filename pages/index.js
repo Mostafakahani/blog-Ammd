@@ -1,28 +1,17 @@
 import Image from 'next/image'
-import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
-import Avatar from '@mui/material/Avatar';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import GitHubIcon from '@mui/icons-material/GitHub';
-
-import Chip from '@mui/material/Chip';
-
 import { Inter } from 'next/font/google'
 import Link from "next/link";
 import styles from '../styles/page.module.css'
 import HeaderStyle from '@/styles/header.module.css'
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 // import imgLogo from '@/pages/imgs/logo1.png'
-import Button from '@mui/material/Button';
 // const inter = Inter({ subsets: ['latin'] })
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { Grid, ListItem as Item } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+import upImg from '@/pages/imgs/01.webp'
+import midImg from '@/pages/imgs/mark-dinn.webp'
+
 import ImgLogo from '@/pages/imgs/photo.jpeg'
+import { lazy, useState } from 'react';
+import Header from '@/Commponent/Header';
 export default function Home() {
     const handleservtest = () => {
         alert('در دسترس نمی باشد.');
@@ -35,128 +24,59 @@ export default function Home() {
     //     color: theme.palette.text.secondary,
     // }));
 
+    const dis = 'هیچ‌کس حتی نمی‌خواهد از کوزه مراقبت مسموم آرایش کند. آخر هفته بود. من یک فوتبالیست کامل هستم. برای نوشیدن، دریاچه بزرگترین ایوان را می گیرد. اهداف زندگی هرکسی بیهوده نیست...'
+    const tit = 'چگونه از کاغذ اولار قدیمی اسباب بازی بسازیم؟'
+
+    const [post, setPost] = useState([
+        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+
+
+    ]);
+    const dataPost = post.map((x, index) => {
+        return (
+            <>
+                <div className='col-sm-6 section-post' key={index}>
+                    <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Image src={upImg} className='imgUp' />
+                    </div>
+                    <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
+                        <li className='col-5'>
+                            <a className=" items-center hover:text-primary profiles " href="/authors/mark-dinn">
+                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} src={x.image} />
+                                <span className='profile-text text-muted'> {x.wirter}</span>
+                            </a>
+                        </li>
+                        <li className='col-7 profile-text text-muted'>{x.date} </li>
+                        <li>
+                            <ul>
+                                <li className="inline-block">
+                                    <a className="mr-3 hover:text-primary" href="/categories/art"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 className='titel'> {x.titel}</h4>
+                    <p className='dis'> {x.description} </p>
+                </div>
+
+            </>
+        )
+
+    })
+
+
 
     return (
         <>
-            <CssBaseline />
-            
-            <Container container sx={{ bgcolor: '#1A0B2E', textAlign: 'center' }}>
-                <Grid>
-                    <Grid mt={5} style={{ color: '#fff' }}>
-                        <Stack direction="row" justifyContent='center'>
-                            <Avatar sx={{ width: 150, height: 150 }} src={ImgLogo.src} />
-                        </Stack>
-                        {/* <Image className='img' width={150} height={150} src={ImgLogo} alt='logo' /> */}
-                        <Grid mt={3} >
-                            <h1 style={{ fontWeight: "800" }}>Mostafa Kahani</h1>
-                        </Grid>
-                        <Grid>
-                            <h5>
-                                <span style={{ color: 'yellow', fontWeight: "500" }}>
-                                    Nothing
-                                </span>
-                                &nbsp;
-                                Developer</h5>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Container>
-            <Container container >
-                <Stack direction="row" container spacing={2} mt={2} justifyContent='center' sx={{ color: "#fff" }}>
-                    <Button sx={{
-                        ":hover": {
-                            bgcolor: "#1976d280",
-                            color: "white"
-                        }
-                    }} variant="outlined" color="primary" href='#'><TelegramIcon />
-                    </Button>
-                    <Button variant="outlined" sx={{
-                        ":hover": {
-                            bgcolor: "#9c27b080",
-                            color: "white"
-                        }
-                    }} color="secondary" href='#'>
-                        <InstagramIcon />
-                    </Button>
-                    <Button sx={{
-                        ":hover": {
-                            bgcolor: "#2e7d3280",
-                            color: "white"
-                        }
-                    }} variant="outlined" color="success" href='#'>
-                        <GitHubIcon />
-                    </Button>
-                </Stack>
-            </Container>
-            {/* 
-            <Container container="true">
-                <Grid mt={3} container spacing={2} columns={16} justifyContent='center' textAlign='center'>
-                    <Grid sm={2} xs={12}>
-                        <Button sx={{
-                            ":hover": {
-                                bgcolor: "#1976d280",
-                                color: "white"
-                            }
-                        }} variant="outlined" color="primary" startIcon={<TelegramIcon />} href='#'>
-                            Telegram
-                        </Button>
-                    </Grid>
-                    <Grid sm={2} xs={12}>
-                        <Button sx={{
-                            ":hover": {
-                                bgcolor: "#2e7d3280",
-                                color: "white"
-                            }
-                        }} variant="outlined" color="success" startIcon={<GitHubIcon />} href='#'>
-                            GitHub
-                        </Button>
-                    </Grid>
-                    <Grid sm={2} xs={12}>
-                        <Button variant="outlined" sx={{
-                            ":hover": {
-                                bgcolor: "#9c27b080",
-                                color: "white"
-                            }
-                        }} color="secondary" startIcon={<InstagramIcon />} href='#'>
-                            Instagram
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Container> */}
-            <br />
-            <br />
-            <Container container spacing={2} >
-                <Grid container="true" columns={16} textAlign='center' sx={{ bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
-                    <Grid sm={8} xs={16} alignItems='center' textAlign='center'>
-                        <Image className='img' width={150} height={150} src={ImgLogo} alt='logo'></Image>
-
-                    </Grid>
-                    <Grid sm={8} xs={16}>
-                        <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </Container>
-            <Container container spacing={2} >
-                <Grid container="true"  columns={16} textAlign='center' sx={{ borderRadius: '10px', bgcolor: '#11071F', textAlign: 'center', color: '#fff' }}>
-                    <Grid sm={8} xs={16} mt={2} alignItems='center' textAlign='center'>
-                        <Paper elevation={0} sx={{ margin: '40px', textAlign: 'justify', bgcolor: '#fff0', color: '#fff' }} justifyContent='center' >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        </Paper>
-                    </Grid>
-                    <Grid sm={8} xs={16}>
-                        <Image style={{ borderRadius: '10px', width: '40%', height: "100%" }} width={150} height={150} src={ImgLogo} alt='logo'></Image>
-
-                    </Grid>
-                </Grid>
-            </Container>
-
-
-
-
+            <Header />
+            <div className='container'>
+                <div className='row'>
+                    {dataPost}
+                </div>
+            </div>
         </>
     )
 }

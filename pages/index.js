@@ -10,12 +10,12 @@ import upImg from '@/pages/imgs/01.webp'
 import midImg from '@/pages/imgs/mark-dinn.webp'
 // import midImg2 from '@/pages/imgs/02.webp'
 // import midImg3 from '@/pages/imgs/03.webp'
-
 import fs from 'fs/promises'
 import path from 'path';
 import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
+
 export default function Home(props) {
     const handleservtest = () => {
         alert('در دسترس نمی باشد.');
@@ -28,17 +28,17 @@ export default function Home(props) {
     //     color: theme.palette.text.secondary,
     // }));
 
-    const dis = 'هیچ‌کس حتی نمی‌خواهد از کوزه مراقبت مسموم آرایش کند. آخر هفته بود. من یک فوتبالیست کامل هستم. برای نوشیدن، دریاچه بزرگترین ایوان را می گیرد. اهداف زندگی هرکسی بیهوده نیست...'
-    const tit = 'چگونه از کاغذ اولار قدیمی اسباب بازی بسازیم؟'
+    // const dis = 'هیچ‌کس حتی نمی‌خواهد از کوزه مراقبت مسموم آرایش کند. آخر هفته بود. من یک فوتبالیست کامل هستم. برای نوشیدن، دریاچه بزرگترین ایوان را می گیرد. اهداف زندگی هرکسی بیهوده نیست...'
+    // const tit = 'چگونه از کاغذ اولار قدیمی اسباب بازی بسازیم؟'
 
-    const [post, setPost] = useState([
-        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
-        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
-        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
-        { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+    // const [post, setPost] = useState([
+    //     { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+    //     { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+    //     { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
+    //     { image: midImg, titel: tit, description: dis, wirter: 'مصطفی کاهانی', date: '12 اردیبهشت' },
 
 
-    ]);
+    // ]);
     const { posts } = props
 
     const dataPost = posts.map((x, index) => {
@@ -51,7 +51,7 @@ export default function Home(props) {
                     <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
                         <li className='col-5'>
                             <a className=" items-center hover:text-primary profiles ">
-                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={midImg} />
+                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.altImg} width={32} height={32} src={midImg} />
                                 <span className='profile-text text-muted'> {x.wirter}</span>
                             </a>
                         </li>
@@ -83,12 +83,36 @@ export default function Home(props) {
 
 
 
+
     return (
         <>
             <Header />
             <div className='container'>
                 <div className='row'>
                     {dataPost}
+                </div>
+                {
+                    posts.map((item) => (
+                        <li key={item.id}>
+                            <Link href={`/posts/${item.id}`}>
+                                {item.titel}
+                            </Link>
+                        </li>
+                    ))
+                }
+
+            </div>
+            <div className="container">
+                <div className="row">
+                    <div className="d-flex justify-content-center mt-5 flex-column">
+                        <Image src={upImg} className='imgUp' alt='ss' />
+                        <h4 className='mt-3'>سلام</h4>
+                        <div className='container'>
+                            {/* <p>دادادادادادستنیشسنتینشسانیاشسمنایمناشسایشسنمیامشسایاشسمیامنشسایمناشسمناینشاسیمنشسانیاشسامیشسنمیناشسیمشسنمایشسایامنتابنتسیاتباسینتباتسیاتباینستاب</p> */}
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>

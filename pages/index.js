@@ -15,6 +15,7 @@ import path from 'path';
 import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
+import Posts from './posts/[pid]';
 
 export default function Home(props) {
     const handleservtest = () => {
@@ -44,7 +45,7 @@ export default function Home(props) {
     const dataPost = posts.map((x, index) => {
         return (
             <>
-                <div className='col-sm-6 section-post' key={index}>
+                <div className='col-sm-6 section-post' key={x.id}>
                     <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
                         <Image src={upImg} className='imgUp' alt='img' height='100%' />
                     </div>
@@ -64,7 +65,7 @@ export default function Home(props) {
                             </ul>
                         </li>
                     </ul>
-                    <h4 className='titel'> {x.titel}</h4>
+                    <Link href={`/posts/${x.id}`} className='titel'> {x.titel}</Link>
                     <p className='dis'> {x.description} </p>
                 </div>
 
@@ -91,7 +92,7 @@ export default function Home(props) {
                 <div className='row'>
                     {dataPost}
                 </div>
-                {
+                {/* {
                     posts.map((item) => (
                         <li key={item.id}>
                             <Link href={`/posts/${item.id}`}>
@@ -99,7 +100,7 @@ export default function Home(props) {
                             </Link>
                         </li>
                     ))
-                }
+                } */}
 
             </div>
             <div className="container">

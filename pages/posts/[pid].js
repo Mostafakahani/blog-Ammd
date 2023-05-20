@@ -16,11 +16,15 @@ import path from 'path';
 import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
-export default function Posts(props) {
+export default function PostsPage(props) {
 
 
-    const { posts } = props
+    const { posts } = props;
 
+    const { loadedPost } = props;
+    if (!loadedPost) {
+        return <h1>Loading...</h1>
+    }
     // const dataPost = props.map((x) => {
     //     return (
     //         <>
@@ -60,30 +64,38 @@ export default function Posts(props) {
     //     )
     // })
 
-    console.log(posts)
-    const [suggItemList, setSuggItemList] = useState([
-        { namePost: 'آموزش ساختن فلان بهمان', dis: 'ssss' },
-        { namePost: 'چخبر سوتونم خوبی؟', dis: 'ssss' },
-        { namePost: 'آیا خرید از کالا دیجی منتقیق است', dis: 'نسدینتشستنیشسنابسیتشسمنباشتسابتسشتبتسشیتبلسیتبتسیبباتیسابتسیتب' },
-    ]);
-    const suggItem = suggItemList.map((x, index) => {
-        return (
-            <>
-                <div key={index} className='col-sm-4 d-flex justify-content-center flex-column '>
-                    <Image className='imgUp' src={upImg} />
-                    <h4 className='mt-3'>{x.namePost}</h4>
-                    <div style={{ width: "auto" }}>
-                        <p > {x.dis}</p>
-                    </div>
-                </div>
+    const [suggItemList, setSuggItemList] = useState(props);
+    console.log(suggItemList)
 
-            </>
-        )
-    })
-    const { loadedPost } = props;
-    if (!loadedPost) {
-        return <h1>Loading...</h1>
-    }
+    // const suggItem = suggItemList.map((x, index) => {
+    //     return (
+    //         <>
+    //             <div key={index} className='col-sm-4 d-flex justify-content-center flex-column '>
+    //                 <Image className='imgUp' src={upImg} alt='img' />
+    //                 <h4 className='mt-3'>{x.titel}</h4>
+    //                 <div style={{ width: "auto" }}>
+    //                     <p > {x.description}</p>
+    //                 </div>
+    //             </div>
+    //             <div key={x.id} className='row'>
+
+    //             </div>
+
+    //         </>
+    //     )
+    // })
+
+
+    // const suggPosts = item.map((item, index) => {
+    //     return (
+
+    //         <li key={index}>
+    //             {item}
+    //         </li>
+    //     )
+    // })
+
+
 
 
 
@@ -94,9 +106,9 @@ export default function Posts(props) {
             <Header />
             <div className='container'>
                 <div className='row'>
-                    {dataPost}
+                    {/* {dataPost} */}
                     <div className='d-flex justify-content-center mt-5 flex-column'>
-                        <h2 style={{ fontWeight: 'bold' }}>{props.titel}</h2>
+                        <h2 style={{ fontWeight: 'bold' }}>{loadedPost.titel}</h2>
                         <div className='row w-50'>
                             <li className='col-5 '>
                                 <a className=" items-center hover:text-primary profiles justify-content-center ">
@@ -108,19 +120,18 @@ export default function Posts(props) {
                         </div>
                         <div className=''>
                             <Image src={upImg} className='imgUp' alt='img' height='100%' />
-
-
                         </div>
                         <div className='container' >
                             <div className='row'>
 
                                 <p className='w-100 col-sm-6' style={{ fontSize: '15px' }}>
-                                    {props.description}
+                                    {loadedPost.description}
+
 
                                 </p>
-                                <p className='w-100 col-sm-6' style={{ fontSize: '15px' }}>
+                                {/* <p className='w-100 col-sm-6' style={{ fontSize: '15px' }}>
                                     {props.description}
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>
@@ -129,7 +140,23 @@ export default function Posts(props) {
 
                     <div className='container'>
                         <div className='row'>
-                            {suggItem}
+                            {/* {suggItem} */}
+                            {
+                                posts.map((x, index) => {
+                                    <div>
+                                        <div key={index} className='col-sm-4 d-flex justify-content-center flex-column '>
+                                            <Image className='imgUp' src={upImg} alt='img' />
+                                            <h4 className='mt-3'>{x.titel}</h4>
+                                            <div style={{ width: "auto" }}>
+                                                <p > {x.description}</p>
+                                            </div>
+                                        </div>
+                                        <div key={x.id} className='row'>
+
+                                        </div>
+                                    </div>
+                                })
+                            }
                         </div>
 
                     </div>
@@ -152,10 +179,6 @@ export async function getStaticProps(context) {
     const filePath = path.join(process.cwd(), 'data', 'posts.json')
     const jsonData = await fs.readFile(filePath)
     const data = JSON.parse(jsonData)
-    // const postId = params.pid
-    // const filePath = path.join(process.cwd(), 'data', 'posts.json')
-    // const jsonData = await fs.readFile(filePath)
-    // const data = async getData()
     const post = data.posts.find((item) => item.id === postId)
     return {
         props: {
@@ -165,17 +188,18 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    // const data = await getData();
-    // const ids = data.posts.map((item) => item.id)
-    // const params = ids.map((item) => ({ params: { pid: item } }))
+    const data = await getData();
+    const ids = data.posts.map((item) => item.id)
+    const params = ids.map((item) => ({ params: { pid: item } }))
     return {
-        paths: [
-            { params: { pid: 'p1'}},
-            { params: { pid: 'p2'}},
-            { params: { pid: 'p3'}},
-    
-    
-    ],
+        paths: params,
+        // [
+        //         // { params: { pid: 'p1'}},
+        //         // { params: { pid: 'p2'}},
+        //         // { params: { pid: 'p3'}},
+
+
+        // ],
         fallback: true,
     }
 }

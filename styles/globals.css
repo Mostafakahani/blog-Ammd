@@ -455,7 +455,9 @@ h3 {
   color: #252525;
   margin-top: 10px;
 }
-
+.titel:hover{
+  color: #252525d2;
+}
 .dis {
   font-size: 15px;
   line-height: 1.625 !important;

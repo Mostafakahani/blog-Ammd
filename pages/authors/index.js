@@ -73,6 +73,19 @@ export async function getStaticProps() {
     }
 }
 export async function setData() {
+    const filePath = path.join(process.cwd(), 'data', 'authors.json')
+    var jsObj = {
+        image: 'mosi',
+        id: 'k',
+        name: 'مصی',
+        about: ' aaaasldmaksdkaskd'
+    };
+    const jsonData = await fs.writeFile(filePath, jsObj)
+    // const data = JSON.parse(jsonData)
+    var arry = [];
+    arry.push(jsObj, jsObj2)
+    var jsonTxt = JSON.stringify(arry);
+    console.log(jsonData)
 
 
 

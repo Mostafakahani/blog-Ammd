@@ -17,6 +17,7 @@ import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
 import Footer from '../../Commponent/Footer';
+import Head from 'next/head';
 export default function PostsPage(props) {
 
 
@@ -66,7 +67,6 @@ export default function PostsPage(props) {
     // })
 
     const [suggItemList, setSuggItemList] = useState(props);
-    console.log(suggItemList)
 
     // const suggItem = suggItemList.map((x, index) => {
     //     return (
@@ -104,6 +104,10 @@ export default function PostsPage(props) {
 
     return (
         <>
+        
+            <Head>
+                <title>{loadedPost.titel}</title>
+            </Head>
             <Header />
             <div className='container'>
                 <div className='row'>
@@ -119,7 +123,7 @@ export default function PostsPage(props) {
                             </li>
                             <li className='col-7 d-flex profile-text text-muted justify-content-center'>12 اردیبهشت </li>
                         </div>
-                        <div className='container' style={{maxWidth: '1000px'}} >
+                        <div className='container' style={{ maxWidth: '1000px' }} >
                             <div className='d-flex justify-content-center '>
                                 <Image src={upImg} className='imgUp w-100' alt='img' height='100%' />
                             </div>
@@ -168,7 +172,7 @@ export default function PostsPage(props) {
                     <div className='container mt-5'>
                         <div className='row  '>
                             <div className='d-flex justify-content-center'>
-                                <p className='text-dark' style={{fontSize: '30px', fontWeight: 'bold'}}>مطالب پیشنهادی</p>
+                                <p className='text-dark' style={{ fontSize: '30px', fontWeight: 'bold' }}>مطالب پیشنهادی</p>
 
                             </div>
                             {/* {suggItem} */}
@@ -193,7 +197,7 @@ export default function PostsPage(props) {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

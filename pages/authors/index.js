@@ -7,16 +7,22 @@ import oneImg from './imgs/one.webp'
 import twoImg from './imgs/two.webp'
 import Image from 'next/image';
 import { useState } from 'react';
+import Head from 'next/head';
 const Authors = (props) => {
     const { authors } = props;
     const baseURL = '/imgs/'
     const [itemAuthors, setItemAuthors] = useState(authors);
+    // const post = itemAuthors.find((item) => item.id === postId)
+
     const data1 = itemAuthors.map((item) => {
         return (
             <>
+            <Head>
+                <title>نویسندگان</title>
+            </Head>
                 <div className='col-sm-4 d-flex justify-content-center flex-column'>
                     <div className='w-60'>
-                        <Image className='w-100 h-100' alt='img' src={item.image.src} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
+                        <Image className='w-100 h-100' alt='img' src={item.image1.src} style={{ width: 'auto', borderRadius: '10px' }} />
 
                     </div>
                     <div className='d-flex justify-content-center mb-5 flex-column'>
@@ -45,7 +51,7 @@ const Authors = (props) => {
                         <div className='row justify-content-center '>
                             {data1}
                         </div>
-                        <button onClick={setData}>setData</button>
+                        {/* <button onClick={setData}>setData</button> */}
                     </div>
 
                 </div>
@@ -72,21 +78,21 @@ export async function getStaticProps() {
         },
     }
 }
-export async function setData() {
-    const filePath = path.join(process.cwd(), 'data', 'authors.json')
-    var jsObj = {
-        image: 'mosi',
-        id: 'k',
-        name: 'مصی',
-        about: ' aaaasldmaksdkaskd'
-    };
-    const jsonData = await fs.writeFile(filePath, jsObj)
-    // const data = JSON.parse(jsonData)
-    var arry = [];
-    arry.push(jsObj, jsObj2)
-    var jsonTxt = JSON.stringify(arry);
-    console.log(jsonData)
+// export async function setData() {
+//     const filePath = path.join(process.cwd(), 'data', 'authors.json')
+//     var jsObj = {
+//         image: 'mosi',
+//         id: 'k',
+//         name: 'مصی',
+//         about: ' aaaasldmaksdkaskd'
+//     };
+//     const jsonData = await fs.writeFile(filePath, jsObj)
+//     // const data = JSON.parse(jsonData)
+//     var arry = [];
+//     arry.push(jsObj, jsObj2)
+//     var jsonTxt = JSON.stringify(arry);
+//     console.log(jsonData)
 
 
 
-}
+// }

@@ -16,12 +16,12 @@ const Authors = (props) => {
             <>
                 <div className='col-sm-4 d-flex justify-content-center flex-column'>
                     <div className='w-60'>
-                        <Image className='w-100 h-100' src={item.image} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
+                        <Image className='w-100 h-100' alt='img' src={item.image.src} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
 
                     </div>
                     <div className='d-flex justify-content-center mb-5 flex-column'>
                         <div className='col mt-3'>
-                            <p style={{fontWeight: 'bold'}}>{item.name}</p>
+                            <p style={{ fontWeight: 'bold' }}>{item.name}</p>
                         </div>
                         <div className='col'>
                             <p>{item.about}</p>
@@ -39,12 +39,13 @@ const Authors = (props) => {
             <div className='container mt-5'>
                 <div className='row'>
                     <div className='d-flex justify-content-center flex-column'>
-                        <p className='text-dark' style={{fontWeight: 'bold', fontSize: '30px'}}>
+                        <p className='text-dark' style={{ fontWeight: 'bold', fontSize: '30px' }}>
                             نویسندگان
                         </p>
                         <div className='row justify-content-center '>
                             {data1}
                         </div>
+                        <button onClick={setData}>setData</button>
                     </div>
 
                 </div>
@@ -70,4 +71,9 @@ export async function getStaticProps() {
             authors: data.authors,
         },
     }
+}
+export async function setData() {
+
+
+
 }

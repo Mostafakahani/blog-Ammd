@@ -449,15 +449,38 @@ h3 {
 
 }
 
+.bg-theme-dark {
+  background-color: rgb(21 32 53/1);
+}
+
+.text-down {
+  color: rgb(161 165 174/1);
+}
+.button-so{
+  color: #838383 !important;
+}
+.button-so:hover{
+  color: #0d6efd !important;
+
+}
+.text-header-menu{
+  opacity: 50%;
+  font-size: 15px;
+}
+.text-header-menu:hover{
+  opacity: 100%;
+}
 .titel {
   font-size: 18px !important;
   font-weight: bold;
   color: #252525;
   margin-top: 10px;
 }
-.titel:hover{
+
+.titel:hover {
   color: #252525d2;
 }
+
 .dis {
   font-size: 15px;
   line-height: 1.625 !important;
@@ -502,7 +525,8 @@ input {
   border-radius: 5px;
   height: 40px;
 }
-input{
+
+input {
   border: 0 !important;
 
 }

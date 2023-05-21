@@ -16,6 +16,7 @@ import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
 import Posts from './posts/[pid]';
+import Footer from '@/Commponent/Footer';
 
 export default function Home(props) {
     const handleservtest = () => {
@@ -51,10 +52,10 @@ export default function Home(props) {
                     </div>
                     <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
                         <li className='col-5'>
-                            <a className=" items-center hover:text-primary profiles ">
+                            <Link href={''} className=" items-center hover:text-primary profiles ">
                                 <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.altImg} width={32} height={32} src={midImg} />
                                 <span className='profile-text text-muted'> {x.wirter}</span>
-                            </a>
+                            </Link>
                         </li>
                         <li className='col-7 profile-text text-muted'>{x.date} </li>
                         <li>
@@ -66,7 +67,7 @@ export default function Home(props) {
                         </li>
                     </ul>
                     <Link href={`/posts/${x.id}`} className='titel'> {x.titel}</Link>
-                    <p className='dis'> {x.description} </p>
+                    <p className='dis' maxlength="200"> {x.smallDes} </p>
                 </div>
 
             </>
@@ -103,20 +104,21 @@ export default function Home(props) {
                 } */}
 
             </div>
-            <div className="container">
+            {/* <div className="container">
                 <div className="row">
                     <div className="d-flex justify-content-center mt-5 flex-column">
                         <Image src={upImg} className='imgUp' alt='ss' />
                         <h4 className='mt-3'>سلام</h4>
                         <div className='container'>
-                            {/* <p>دادادادادادستنیشسنتینشسانیاشسمنایمناشسایشسنمیامشسایاشسمیامنشسایمناشسمناینشاسیمنشسانیاشسامیشسنمیناشسیمشسنمایشسایامنتابنتسیاتباسینتباتسیاتباینستاب</p> */}
+                            <p>دادادادادادستنیشسنتینشسانیاشسمنایمناشسایشسنمیامشسایاشسمیامنشسایمناشسمناینشاسیمنشسانیاشسامیشسنمیناشسیمشسنمایشسایامنتابنتسیاتباسینتباتسیاتباینستاب</p>
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
+            </div> */}
+            <Footer />
         </>
     )
 }

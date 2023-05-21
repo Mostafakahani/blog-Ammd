@@ -9,13 +9,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 const Authors = (props) => {
     const { authors } = props;
+    const baseURL = '/imgs/'
     const [itemAuthors, setItemAuthors] = useState(authors);
     const data1 = itemAuthors.map((item) => {
         return (
             <>
                 <div className='col-sm-4 d-flex justify-content-center flex-column'>
                     <div className='w-60'>
-                        <Image className='w-100 h-100' src={twoImg} style={{ width: 'auto', borderRadius: '10px' }} />
+                        <Image className='w-100 h-100' src={item.image} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
 
                     </div>
                     <div className='d-flex justify-content-center mb-5 flex-column'>

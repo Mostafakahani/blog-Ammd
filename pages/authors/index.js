@@ -10,14 +10,21 @@ import { useState } from 'react';
 const Authors = (props) => {
     const { authors } = props;
     const baseURL = '/imgs/'
+    const [imgItems, setImageItems] = useState((authors.map((x, index)=>{
+        return x.IMG
+
+    })));
+    // console.log(imgItems)
+    const [test, setTest] = useState(imgItems);
+    console.log(test)
     const [itemAuthors, setItemAuthors] = useState(authors);
     const data1 = itemAuthors.map((item) => {
+        // console.log(item.image)
         return (
             <>
-                <div className='col-sm-4 d-flex justify-content-center flex-column'>
+                <div key={item.id} className='col-sm-4 d-flex justify-content-center flex-column'>
                     <div className='w-60'>
-                        <Image className='w-100 h-100' alt='img' src={item.image.src} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
-
+                        <Image className='w-100 h-100' alt='img' src={test} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
                     </div>
                     <div className='d-flex justify-content-center mb-5 flex-column'>
                         <div className='col mt-3'>
@@ -25,6 +32,7 @@ const Authors = (props) => {
                         </div>
                         <div className='col'>
                             <p>{item.about}</p>
+                            {/* {test} */}
                         </div>
                     </div>
                 </div>
@@ -45,7 +53,7 @@ const Authors = (props) => {
                         <div className='row justify-content-center '>
                             {data1}
                         </div>
-                        <button onClick={setData}>setData</button>
+                        {/* <button onClick={setData}>setData</button> */}
                     </div>
 
                 </div>

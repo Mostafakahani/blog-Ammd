@@ -16,6 +16,7 @@ import path from 'path';
 import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
+import Footer from '../../Commponent/Footer';
 export default function PostsPage(props) {
 
 
@@ -192,6 +193,7 @@ export default function PostsPage(props) {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

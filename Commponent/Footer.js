@@ -7,10 +7,10 @@ export default function Footer() {
             <div className="container-fluid bg-theme-dark">
                 <div className="row d-flex justify-content-center">
                     <div className="col-6 col-sm-1 d-flex justify-content-center mt-5">
-                        <Link href={''} className="text-header-menu text-light ">خانه</Link>
+                        <Link href={'/'} className="text-header-menu text-light ">خانه</Link>
                     </div>
                     <div className="col-6 col-sm-1 d-flex justify-content-center mt-5">
-                        <Link href={''} className="text-header-menu text-light">مطالب</Link>
+                        <Link href={'/authors'} className="text-header-menu text-light">نویسندگان</Link>
                     </div>
                     <div className="col-6 col-sm-1 d-flex justify-content-center mt-5">
                         <Link href={''} className="text-header-menu text-light">افزودن</Link>
@@ -20,12 +20,13 @@ export default function Footer() {
                     </div>
                     <div className="d-flex justify-content-center">
 
-                        <p className="text-light" style={{opacity: '50%', fontSize: '15px'}}>
+                        <Link href={'/authors'} className="text-light titel m-5" style={{opacity: '50%', fontSize: '15px'}}>
+                            طراحی و توسعه توسط نویسندگان
                             
-                        طراحی و توسعه توسط خودم
+                            
 
 
-                        </p>
+                        </Link>
                     </div>
                 </div>
             </div>

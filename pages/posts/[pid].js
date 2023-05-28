@@ -4,147 +4,59 @@ import Link from "next/link";
 import styles from '@/styles/page.module.css'
 import HeaderStyle from '@/styles/header.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
-// import imgLogo from '@/pages/imgs/logo1.png'
-// const inter = Inter({ subsets: ['latin'] })
-// import upImg from '@/pages/imgs/01.webp'
-import midImg from '@/public/images/blog-img/mark-dinn.webp'
-// import midImg2 from '@/pages/imgs/02.webp'
-// import midImg3 from '@/pages/imgs/03.webp'
-
+// import midImg from '@/public/images/blog-img/mark-dinn.webp'
 import fs from 'fs/promises'
 import path from 'path';
-// import ImgLogo from '@/pages/imgs/photo.jpeg'
+import iconD from '@/public/icon-date.png'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
 import Footer from '../../Commponent/Footer';
 import Head from 'next/head';
 export default function PostsPage(props) {
-
-
     const { posts } = props;
-
     const { loadedPost } = props;
     if (!loadedPost) {
         return <h1>Loading...</h1>
     }
-    // const dataPost = props.map((x) => {
-    //     return (
-    //         <>
-    //             <div className='col-sm-6 section-post' key={x.id}>
-    //                 <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
-    //                     <Image src={upImg} className='imgUp' alt='img' height='100%' />
-    //                 </div>
-    //                 <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
-    //                     <li className='col-5'>
-    //                         <a className=" items-center hover:text-primary profiles ">
-    //                             <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={midImg} />
-    //                             <span className='profile-text text-muted'> {x.wirter}</span>
-    //                         </a>
-    //                     </li>
-    //                     <li className='col-7 profile-text text-muted'>{x.date} </li>
-    //                     <li>
-    //                         <ul>
-    //                             <li className="inline-block">
-    //                                 <a className="mr-3 hover:text-primary" href="/categories/art"></a>
-    //                             </li>
-    //                         </ul>
-    //                     </li>
-    //                 </ul>
-    //                 <h4 className='titel'> {x.titel}</h4>
-    //                 <p className='dis'> {x.description} </p>
-
-    //             </div>
-
-    //         </>
-    //     )
-
-    // })
-
-    // const data1 = posts.map((item) => {
-    //     return (
-    //         <li key={item.id}>{item.titel}</li>
-    //     )
-    // })
-
-    const [suggItemList, setSuggItemList] = useState(props);
-
-    // const suggItem = suggItemList.map((x, index) => {
-    //     return (
-    //         <>
-    //             <div key={index} className='col-sm-4 d-flex justify-content-center flex-column '>
-    //                 <Image className='imgUp' src={upImg} alt='img' />
-    //                 <h4 className='mt-3'>{x.titel}</h4>
-    //                 <div style={{ width: "auto" }}>
-    //                     <p > {x.description}</p>
-    //                 </div>
-    //             </div>
-    //             <div key={x.id} className='row'>
-
-    //             </div>
-
-    //         </>
-    //     )
-    // })
-
-
-    // const suggPosts = item.map((item, index) => {
-    //     return (
-
-    //         <li key={index}>
-    //             {item}
-    //         </li>
-    //     )
-    // })
-
-
-
-
-
-
-
     return (
         <>
-        
             <Head>
                 <title>{loadedPost.titel}</title>
             </Head>
             <Header />
-            <div className='container'>
+            <div className='container mt-4'>
                 <div className='row'>
                     {/* {dataPost} */}
-                    <div className='d-flex justify-content-center mt-5 flex-column'>
-                        <h2 style={{ fontWeight: 'bold' }}>{loadedPost.titel}</h2>
-                        <div className='row w-50'>
-                            <li className='col-5 '>
-                                <a className=" items-center hover:text-primary profiles justify-content-center ">
-                                    <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={midImg} />
-                                    <span className='profile-text text-muted'> مصطفی کاهانی</span>
-                                </a>
-                            </li>
-                            <li className='col-7 d-flex profile-text text-muted justify-content-center'>12 اردیبهشت </li>
+                    <div className='d-flex justify-content-center mt-5 flex-column' >
+                        <div className='d-flex justify-content-center flex-column' style={{ maxWidth: '94%' }}>
+                            <h2 style={{ fontWeight: 'bold' }}>{loadedPost.titel}</h2>
+                            <div className='d-flex justify-content-between w-100 mt-3'>
+                                <Link href={`/authors/authorsList/${loadedPost.authorsId}`} className="d-flex items-center hover:text-primary profiles justify-content-center ">
+                                    <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={loadedPost.wirterProfile} />
+                                    <span className='profile-text text-muted'>{loadedPost.wirter}</span>
+                                </Link>
+                                <div className='d-flex profile-text text-muted justify-content-center aline-content-center'>
+                                    {/* <Image src={iconD} width={25} height={25} /> */}
+                                    <span >{loadedPost.date}</span>
+                                    {/* style={{marginRight: '10px'}} */}
+                                </div>
+                            </div>
                         </div>
-                        <div className='container' style={{ maxWidth: '1000px' }} >
+                        <div className='container mb-5' style={{ maxWidth: '1000px' }} >
                             <div className='d-flex justify-content-center '>
-                                <Image src={loadedPost.image} className='imgUp w-100' alt='img' width={1000} height={1000} style={{width: '100%', height: '100%'}} />
+                                <Image src={loadedPost.image} className='imgUp w-100' alt='img' width={1000} height={1000} style={{ width: '100%', height: '100%' }} />
                             </div>
                             <div className='row'>
-
                                 <p className='w-100 col-sm-6' style={{ fontSize: '15px' }}>
                                     {loadedPost.description}
-
-
                                 </p>
-                                {/* <p className='w-100 col-sm-6' style={{ fontSize: '15px' }}>
-                                    {props.description}
-                                </p> */}
                             </div>
-
                             <div className="d-flex flex-row-reverse direction-row-reverse justify-content-between align-items-stretch ">
                                 <li className=' '>
-                                    <a className=" items-center hover:text-primary profiles justify-content-center ">
-                                        <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={midImg} />
-                                        <span className='profile-text text-muted'> مصطفی کاهانی</span>
-                                    </a>
+                                    <Link href={`/authors/authorsList/${loadedPost.authorsId}`} className=" items-center hover:text-primary profiles justify-content-center ">
+                                        <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt="Mark Dinn" width={32} height={32} src={loadedPost.wirterProfile} />
+                                        <span className='profile-text text-muted'> {loadedPost.wirter}</span>
+                                    </Link>
                                 </li>
                                 <ul className="social-share d-flex mb-4">
                                     <li className="">
@@ -166,35 +78,28 @@ export default function PostsPage(props) {
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div className='container mt-5'>
+                    {/* <div className='container mt-5'>
                         <div className='row  '>
                             <div className='d-flex justify-content-center'>
                                 <p className='text-dark' style={{ fontSize: '30px', fontWeight: 'bold' }}>مطالب پیشنهادی</p>
 
                             </div>
-                            {/* {suggItem} */}
-                            {/* {
-                                posts.map((x, index) => {
+                            {
+                                sug.map((x, index) => {
                                     <div>
                                         <div key={index} className='col-sm-4 d-flex justify-content-center flex-column '>
-                                            <Image className='imgUp' src={upImg} alt='img' />
+                                            <Image className='imgUp' src={x.image} alt='img' />
                                             <h4 className='mt-3'>{x.titel}</h4>
                                             <div style={{ width: "auto" }}>
-                                                <p > {x.description}</p>
+                                                <p > {x.smallDes}</p>
                                             </div>
-                                        </div>
-                                        <div key={x.id} className='row'>
-
                                         </div>
                                     </div>
                                 })
-                            } */}
+                            }
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Footer />

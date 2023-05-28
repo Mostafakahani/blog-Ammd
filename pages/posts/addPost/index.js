@@ -1,8 +1,11 @@
+import { AllItems } from '@/pages/authors';
 import styles from '@/styles/page.module.css'
-import fs from 'fs/promises'
-const AddPost = () => {
+// import fs from 'fs/promises'
+const AddPost = (props) => {
     return (
         <>
+        {/* <AllItems /> */}
+        {/* {console.log(props.AllItems)} */}
             <div className="container mt-5">
                 <div className=" d-flex justify-content-center">
                     <div className="addBoxPost" >
@@ -23,15 +26,15 @@ const AddPost = () => {
 }
 export default AddPost;
 
-export async function Add(req, res) {
-    try {
-        const file_data = await fsp.readFile('../../data/data.json')
-        const json_data = JSON.parse(file_data)
-        // Do stuff
-        res.status(200).json(data.something)
-    }
-    catch (error) {
-        console.log(error)
-        res.status(500).json({ error: 'Error reading data' })
-    }
-} 
+// export async function Add(req, res) {
+//     try {
+//         const file_data = await fsp.readFile('../../data/data.json')
+//         const json_data = JSON.parse(file_data)
+//         // Do stuff
+//         res.status(200).json(data.something)
+//     }
+//     catch (error) {
+//         console.log(error)
+//         res.status(500).json({ error: 'Error reading data' })
+//     }
+// } 

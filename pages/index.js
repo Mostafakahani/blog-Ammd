@@ -6,16 +6,15 @@ import HeaderStyle from '@/styles/header.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 // import imgLogo from '@/pages/imgs/logo1.png'
 // const inter = Inter({ subsets: ['latin'] })
-import upImg from '@/pages/imgs/01.webp'
-import midImg from '@/pages/imgs/mark-dinn.webp'
+// import upImg from '@/pages/imgs/01.webp'
 // import midImg2 from '@/pages/imgs/02.webp'
 // import midImg3 from '@/pages/imgs/03.webp'
 import fs from 'fs/promises'
 import path from 'path';
-import ImgLogo from '@/pages/imgs/photo.jpeg'
+// import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
-import Posts from './posts/[pid]';
+// import Posts from './posts/[pid]';
 import Footer from '@/Commponent/Footer';
 import Head from 'next/head';
 
@@ -60,22 +59,24 @@ export default function Home(props) {
         // setNewItem(newI)
         // setNewItem({ titel: 'test' })
     }
+    // const { loadedPost } = props;
+
 
     const dataPost = posts.map((x, index) => {
         return (
             <>
                 <div className='col-sm-6 section-post' key={x.id}>
                     <div className='' style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Image src={upImg} className='imgUp' alt='img' height='100%' />
+                        <Image src={x.image} width={1000} height={1000} style={{width: '100%', height: '100%'}} className='imgUp' alt='img' />
                     </div>
-                    <ul className="row mt-4 mb-4 flex flex-wrap items-center space-x-3 text-text">
-                        <li className='col-5'>
+                    <ul className="row mt-4 mb-4 flex flex-wrap items-center text-text">
+                        <li className='col-7'>
                             <Link href={''} className=" items-center hover:text-primary profiles ">
-                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.altImg} width={32} height={32} src={midImg} />
+                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.wirter} width={32} height={32} src={x.image} />
                                 <span className='profile-text text-muted'> {x.wirter}</span>
                             </Link>
                         </li>
-                        <li className='col-7 profile-text text-muted'>{x.date} </li>
+                        <span className='col-5 profile-text text-muted'>{x.date} </span>
                         <li>
                             <ul>
                                 <li className="inline-block">
@@ -85,22 +86,13 @@ export default function Home(props) {
                         </li>
                     </ul>
                     <Link href={`/posts/${x.id}`} className='titel'> {x.titel}</Link>
-                    <p className='dis' maxlength="200"> {x.smallDes} </p>
+                    <p className='dis'> {x.smallDes} </p>
                 </div>
 
             </>
         )
 
     })
-
-    const data1 = posts.map((item) => {
-        return (
-            <li key={item.id}>{item.titel}</li>
-        )
-    })
-
-
-
 
 
 
@@ -115,16 +107,7 @@ export default function Home(props) {
                 <div className='row'>
                     {dataPost}
                 </div>
-                <button onClick={addI}>addI</button>
-                {/* {
-                    posts.map((item) => (
-                        <li key={item.id}>
-                            <Link href={`/posts/${item.id}`}>
-                                {item.titel}
-                            </Link>
-                        </li>
-                    ))
-                } */}
+
 
             </div>
             {/* <div className="container">
@@ -157,3 +140,16 @@ export async function getStaticProps() {
         },
     }
 }
+// export async function getStaticProps(context) {
+//     const { params } = context;
+//     const postId = params.pid;
+//     const filePath = path.join(process.cwd(), 'data', 'posts.json')
+//     const jsonData = await fs.readFile(filePath)
+//     const data = JSON.parse(jsonData)
+//     const post = data.posts.find((item) => item.id === postId)
+//     return {
+//         props: {
+//             loadedPost: post,
+//         },
+//     }
+// }

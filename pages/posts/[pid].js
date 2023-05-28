@@ -6,14 +6,14 @@ import HeaderStyle from '@/styles/header.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 // import imgLogo from '@/pages/imgs/logo1.png'
 // const inter = Inter({ subsets: ['latin'] })
-import upImg from '@/pages/imgs/01.webp'
-import midImg from '@/pages/imgs/mark-dinn.webp'
+// import upImg from '@/pages/imgs/01.webp'
+import midImg from '@/public/images/blog-img/mark-dinn.webp'
 // import midImg2 from '@/pages/imgs/02.webp'
 // import midImg3 from '@/pages/imgs/03.webp'
 
 import fs from 'fs/promises'
 import path from 'path';
-import ImgLogo from '@/pages/imgs/photo.jpeg'
+// import ImgLogo from '@/pages/imgs/photo.jpeg'
 import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
 import Footer from '../../Commponent/Footer';
@@ -125,7 +125,7 @@ export default function PostsPage(props) {
                         </div>
                         <div className='container' style={{ maxWidth: '1000px' }} >
                             <div className='d-flex justify-content-center '>
-                                <Image src={upImg} className='imgUp w-100' alt='img' height='100%' />
+                                <Image src={loadedPost.image} className='imgUp w-100' alt='img' width={1000} height={1000} style={{width: '100%', height: '100%'}} />
                             </div>
                             <div className='row'>
 

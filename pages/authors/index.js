@@ -6,28 +6,43 @@ import path from 'path';
 import oneImg from './imgs/one.webp'
 import twoImg from './imgs/two.webp'
 import Image from 'next/image';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import Head from 'next/head';
 const Authors = (props) => {
     const { authors } = props;
+
+    const [a, setsa] = useState([
+        { imag3: oneImg },
+        { imag3: twoImg }
+    ])
+    const ii = a.map((f, index) => {
+        console.log(f.imag3.src)
+        return (
+            <>
+                <Image alt="" src={f.imag3.src} width={100} height={100} />
+            </>
+        )
+    }
+    )
+
+
+
     const baseURL = '/imgs/'
-    const [imgItems, setImageItems] = useState((authors.map((x, index)=>{
-        return x.IMG
+    const [imgItems, setImageItems] = useState((authors.map((x, index) => {
+        return x.image
 
     })));
     // console.log(imgItems)
-    const [test, setTest] = useState(imgItems);
-    console.log(test)
     const [itemAuthors, setItemAuthors] = useState(authors);
-    // const post = itemAuthors.find((item) => item.id === postId)
 
-    const data1 = itemAuthors.map((item) => {
-        // console.log(item.image)
+    const { image } = props
+
+    const data1 = itemAuthors.map((item, index) => {
         return (
             <>
-                <div className='col-sm-4 d-flex justify-content-center flex-column'>
+                <div key={index} className='col-sm-4 d-flex justify-content-center flex-column'>
                     <div className='w-60'>
-                        <Image className='w-100 h-100' alt='img' src={item.image.src} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
+                        <Image className='w-100 h-100' alt='img' src={item.image} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
 
                     </div>
                     <div className='d-flex justify-content-center mb-5 flex-column'>
@@ -36,7 +51,6 @@ const Authors = (props) => {
                         </div>
                         <div className='col'>
                             <p>{item.about}</p>
-                            {/* {test} */}
                         </div>
                     </div>
                 </div>
@@ -45,6 +59,13 @@ const Authors = (props) => {
 
         )
     })
+
+
+
+
+
+
+
     return (
         <>
             <Header />
@@ -57,6 +78,7 @@ const Authors = (props) => {
                         <div className='row justify-content-center '>
                             {data1}
                         </div>
+                        {/* {ii} */}
                         {/* <button onClick={setData}>setData</button> */}
                     </div>
 
@@ -71,7 +93,14 @@ const Authors = (props) => {
 
 }
 export default Authors;
+// export function AllItems() {
+//     const [imgsData, setImgsData] = useState([
+//         { img1: oneImg },
+//         { img1: twoImg }
+//     ])
 
+
+// }
 
 export async function getStaticProps() {
     const filePath = path.join(process.cwd(), 'data', 'authors.json')

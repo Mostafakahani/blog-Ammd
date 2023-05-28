@@ -29,7 +29,7 @@ const Authors = (props) => {
                         <div className='col'>
                             <p>{item.about}</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </>
@@ -39,6 +39,10 @@ const Authors = (props) => {
     })
     return (
         <>
+            <Head>
+                <title>نویسندگان</title>
+
+            </Head>
             <Header />
             <div className='container mt-5'>
                 <div className='row'>

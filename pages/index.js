@@ -71,8 +71,8 @@ export default function Home(props) {
                     </div>
                     <ul className="row mt-4 mb-4 flex flex-wrap items-center text-text">
                         <li className='col-7'>
-                            <Link href={''} className=" items-center hover:text-primary profiles ">
-                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.wirter} width={32} height={32} src={x.image} />
+                            <Link href={`/authors/authorsList/${x.authorsId}`} className=" items-center hover:text-primary profiles ">
+                                <Image style={{ borderRadius: '100%', marginLeft: '10px' }} alt={x.wirter} width={32} height={32} src={x.wirterProfile} />
                                 <span className='profile-text text-muted'> {x.wirter}</span>
                             </Link>
                         </li>

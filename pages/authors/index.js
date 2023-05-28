@@ -3,36 +3,13 @@ import Footer from '@/Commponent/Footer';
 import Header from '@/Commponent/Header';
 import fs from 'fs/promises'
 import path from 'path';
-import oneImg from './imgs/one.webp'
-import twoImg from './imgs/two.webp'
 import Image from 'next/image';
 import { use, useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 const Authors = (props) => {
     const { authors } = props;
 
-    const [a, setsa] = useState([
-        { imag3: oneImg },
-        { imag3: twoImg }
-    ])
-    const ii = a.map((f, index) => {
-        console.log(f.imag3.src)
-        return (
-            <>
-                <Image alt="" src={f.imag3.src} width={100} height={100} />
-            </>
-        )
-    }
-    )
-
-
-
-    const baseURL = '/imgs/'
-    const [imgItems, setImageItems] = useState((authors.map((x, index) => {
-        return x.image
-
-    })));
-    // console.log(imgItems)
     const [itemAuthors, setItemAuthors] = useState(authors);
 
     const { image } = props
@@ -41,17 +18,18 @@ const Authors = (props) => {
         return (
             <>
                 <div key={index} className='col-sm-4 d-flex justify-content-center flex-column'>
-                    <div className='w-60'>
-                        <Image className='w-100 h-100' alt='img' src={item.image} width={200} height={200} style={{ width: 'auto', borderRadius: '10px' }} />
+                    <Link href={`/authors/authorsList/${item.id}`} className='w-60'>
+                        <Image className='w-100 h-100' alt='img' src={item.image} width={400} height={400} style={{ width: 'auto', borderRadius: '10px' }} />
 
-                    </div>
+                    </Link>
                     <div className='d-flex justify-content-center mb-5 flex-column'>
                         <div className='col mt-3'>
-                            <p style={{ fontWeight: 'bold' }}>{item.name}</p>
+                            <Link className='titel' href={''}>{item.name}</Link>
                         </div>
                         <div className='col'>
                             <p>{item.about}</p>
                         </div>
+                        
                     </div>
                 </div>
             </>
@@ -59,13 +37,6 @@ const Authors = (props) => {
 
         )
     })
-
-
-
-
-
-
-
     return (
         <>
             <Header />
@@ -78,15 +49,10 @@ const Authors = (props) => {
                         <div className='row justify-content-center '>
                             {data1}
                         </div>
-                        {/* {ii} */}
-                        {/* <button onClick={setData}>setData</button> */}
                     </div>
-
                 </div>
+            </div>
 
-            </div>
-            <div>
-            </div>
             <Footer />
         </>
     )
@@ -113,21 +79,4 @@ export async function getStaticProps() {
         },
     }
 }
-// export async function setData() {
-//     const filePath = path.join(process.cwd(), 'data', 'authors.json')
-//     var jsObj = {
-//         image: 'mosi',
-//         id: 'k',
-//         name: 'مصی',
-//         about: ' aaaasldmaksdkaskd'
-//     };
-//     const jsonData = await fs.writeFile(filePath, jsObj)
-//     // const data = JSON.parse(jsonData)
-//     var arry = [];
-//     arry.push(jsObj, jsObj2)
-//     var jsonTxt = JSON.stringify(arry);
-//     console.log(jsonData)
 
-
-
-// }

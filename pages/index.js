@@ -17,6 +17,7 @@ import { lazy, useState } from 'react';
 import Header from '@/Commponent/Header';
 import Posts from './posts/[pid]';
 import Footer from '@/Commponent/Footer';
+import Head from 'next/head';
 
 export default function Home(props) {
     const handleservtest = () => {
@@ -42,6 +43,23 @@ export default function Home(props) {
 
     // ]);
     const { posts } = props
+    function addI() {
+        const [newItem, setNewItem] = useState(posts);
+        const data = [...newItem];
+        data.push({
+            titel: "nameProduct",
+            wirter: "priceProduct",
+            valueP: "data"
+        })
+        setNewItem(data)
+        console.log(newItem)
+
+        // const copyPosts = [...posts];
+        // console.log(newItem)
+        // const newI = copyPosts.push({ titel: 'test' })
+        // setNewItem(newI)
+        // setNewItem({ titel: 'test' })
+    }
 
     const dataPost = posts.map((x, index) => {
         return (
@@ -88,11 +106,16 @@ export default function Home(props) {
 
     return (
         <>
+
+            <Head>
+                <title>خانه</title>
+            </Head>
             <Header />
             <div className='container'>
                 <div className='row'>
                     {dataPost}
                 </div>
+                <button onClick={addI}>addI</button>
                 {/* {
                     posts.map((item) => (
                         <li key={item.id}>

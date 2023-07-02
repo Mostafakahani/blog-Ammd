@@ -91,7 +91,7 @@ app.post('/api/login1', (req, res) => {
     const values = [newUsername, newPassword];
 
     connection.query(sql, values, (error, results) => {
-        console.log("result: ", results, "error: ", error, "sql: ", sql, "values: ", values);
+        // console.log("result: ", results, "error: ", error, "sql: ", sql, "values: ", values);
         if (error) {
             console.error('Error executing the query:', error);
             res.status(500).json({ error: 'An error occurred' });
@@ -126,6 +126,43 @@ app.get('/api/protected', (req, res) => {
         res.json({ message: 'Access granted to protected resource', username: decoded.username });
     });
 });
+
+
+
+// API برای دریافت لیست مطالب
+app.get('/api/posts', (req, res) => {
+    const sql = 'SELECT * FROM posts';
+
+    connection.query(sql, (error, results) => {
+        if (error) {
+            console.error('Error executing the query:', error);
+            res.status(500).json({ error: 'An error occurred' });
+            return;
+        }
+        res.json(results);
+    });
+});
+
+// API برای ارسال مطلب جدید
+app.post('/api/posts', (req, res) => {
+    const { title, content, author, imageUrl } = req.body;
+    const date = new Date();
+    const formattedDate = date.toISOString();
+
+    const sql =
+        'INSERT INTO posts (title, content, author, image_url, publish_date) VALUES (?, ?, ?, ?, ?)';
+    const values = [title, content, author, imageUrl, formattedDate];
+
+    connection.query(sql, values, (error, result) => {
+        if (error) {
+            console.error('Error executing the query:', error);
+            res.status(500).json({ error: 'An error occurred' });
+            return;
+        }
+        res.json({ message: 'Post added successfully' });
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

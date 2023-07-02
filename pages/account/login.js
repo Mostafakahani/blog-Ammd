@@ -1,71 +1,67 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useState } from "react";
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // ارسال درخواست به سمت سرور
-      const response = await axios.post('http://localhost:3001/api/login', {
-        username,
-        password,
-      });
+      const response = await axios.post('http://localhost:3001/api/login1 ', formData);
+      console.log(response.data);
+      window.location.href = '/protected';
 
-      // دریافت توکن از پاسخ سرور
-      const { token } = response.data;
 
-      // ذخیره توکن در localStorage یا در جای دیگر
-      localStorage.setItem('token', token);
 
-      // ریدایرکت به صفحه مورد نظر
-      window.location.href = '/dashboard';
     } catch (error) {
       console.error('Error:', error);
-
       // پردازش خطا و نمایش پوش‌نوتیفیکیشن با استفاده از SweetAlert2
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'An error occurred during login. Please try again later.',
+        text: 'داداش اشتباه زدی سوتونم.',
       });
     }
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
+    <>
       <div className="container d-flex justify-content-center" style={{ textAlign: 'center' }}>
-
         <form className="row flex-column" style={{ width: '30%' }} onSubmit={handleSubmit}>
           <h5 style={{ fontWeight: '900' }}>ورود به حساب کاربری</h5>
-
           <input
-            className=' col'
+            className='col'
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
             placeholder="نام کاربری"
-
           />
           <input
-            className=' col'
+            className='col'
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="کلمه عبور"
-
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="رمز عبور"
           />
-          <button type="submit">ورود</button>
+          <button href="#">ورود</button>
+          <p style={{ cursor: 'pointer' }} onClick={() => location.href = '/account/register'}>ساخت حساب کاربری</p>
+
         </form>
       </div>
-    </div>
-  );
-};
-
-
-export default Login;
+    </>
+  )
+}

@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('./config');
 
-// تنظیمات اتصال به دیتابیس
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -16,10 +15,9 @@ const connection = mysql.createConnection({
     database: 'nodetest',
 });
 
-app.use(cors()); // اضافه کردن middleware cors به برنامه
-app.use(bodyParser.json()); // اضافه کردن middleware body-parser به برنامه
+app.use(cors());
+app.use(bodyParser.json());
 
-// اتصال به دیتابیس
 connection.connect((error) => {
     if (error) {
         console.error('Error connecting to the database:', error);
@@ -28,7 +26,6 @@ connection.connect((error) => {
     console.log('Connected to the database');
 });
 
-// API برای دریافت اطلاعات از دیتابیس
 app.get('/api/data', (req, res) => {
     const sql = 'SELECT * FROM users';
 
@@ -42,26 +39,11 @@ app.get('/api/data', (req, res) => {
     });
 });
 
-// API برای دریافت داده‌های فرم و ذخیره در دیتابیس
-// app.post('/api/data', (req, res) => {
-//     const { firstName, lastName, email, password } = req.body;
-//     const sql = 'INSERT INTO users (first_Name, last_name, email, password) VALUES (?, ?, ?, ?)';
-//     const values = [firstName, lastName, email, password];
-
-//     connection.query(sql, values, (error, result) => {
-//         if (error) {
-//             console.error('Error executing the query:', error);
-//             res.status(500).json({ error: 'An error occurred' });
-//             return;
-//         }
-//         res.json({ message: 'Data saved successfully' });
-//     });
-// });
-
 app.post('/api/data', (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
-    const sqlCheckDuplicate = 'SELECT * FROM users WHERE email = ? OR username = ?';
+    const sqlCheckDuplicate = 'SELECT * FROM accounts WHERE email = ? OR username = ?';
     const valuesCheckDuplicate = [email, username];
+    const sqlGetMaxId = 'SELECT MAX(id) AS maxId FROM accounts';
 
     connection.query(sqlCheckDuplicate, valuesCheckDuplicate, (error, results) => {
         if (error) {
@@ -75,89 +57,75 @@ app.post('/api/data', (req, res) => {
             return;
         }
 
-        const sql = 'INSERT INTO users (first_Name, last_name, email, password, username) VALUES (?, ?, ?, ?, ?)';
-        const values = [firstName, lastName, email, password, username];
-
-        connection.query(sql, values, (error, result) => {
+        connection.query(sqlGetMaxId, (error, results) => {
             if (error) {
                 console.error('Error executing the query:', error);
                 res.status(500).json({ error: 'An error occurred' });
                 return;
             }
-            res.json({ message: 'Data saved successfully' });
+
+            const maxId = results[0].maxId || 0;
+            const newId = maxId + 1;
+
+            const sql = 'INSERT INTO accounts (id, firstName, lastName, email, password, username) VALUES (?, ?, ?, ?, ?, ?)';
+            const values = [newId, firstName, lastName, email, password, username];
+
+            connection.query(sql, values, (error, result) => {
+                if (error) {
+                    console.error('Error executing the query:', error);
+                    res.status(500).json({ error: 'An error occurred' });
+                    return;
+                }
+                res.json({ message: 'Data saved successfully' });
+            });
         });
     });
 });
 
-// راه‌اندازی روت برای احراز هویت
-app.post('/api/login', (req, res) => {
+app.post('/api/login1', (req, res) => {
     const { username, password } = req.body;
+    const newUsername = password;
+    const newPassword = username;
 
-    // // در اینجا باید اطلاعات کاربر را با داده‌های موجود در دیتابیس مقایسه کنید
+    const sql = 'SELECT * FROM accounts WHERE username = ? AND password = ?';
+    const values = [newUsername, newPassword];
 
-    // // مثال ساده: احراز هویت برای کاربر admin با رمز عبور password123
-    // if (username === 'admin' && password === 'password123') {
-    //     // احراز هویت موفقیت‌آمیز بوده است
-
-    //     // ایجاد توکن JWT
-    //     const token = jwt.sign({ username }, config.secretKey, { expiresIn: '1h' });
-
-    //     res.json({ token });
-    // } else {
-    //     // احراز هویت ناموفق بوده است
-    //     res.status(401).json({ error: 'Invalid username or password' });
-    // }
-    // بررسی اطلاعات کاربر
-    if (username !== 'admin' || password !== 'password') {
-      // ارسال خطا به فرانت اند
-      return res.status(400).json({ error: 'نام کاربری یا رمز عبور نادرست است' });
-    }
-  
-    // اگر اطلاعات صحیح بود، ارسال پاسخ موفق به فرانت اند
-    res.json({ message: 'ورود موفقیت‌آمیز بود' });
-});
-
-// راه‌اندازی روت برای دسترسی به منابع محافظت‌شده
-app.get('/api/protected', (req, res) => {
-    // بررسی وجود توکن JWT در هدر Authorization
-    const token = req.headers.authorization;
-
-    if (!token) {
-        // توکن وجود ندارد
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-    }
-
-    // تأیید و صحت‌سنجی توکن
-    jwt.verify(token, config.secretKey, (err, decoded) => {
-        if (err) {
-            // توکن نامعتبر است
-            res.status(401).json({ error: 'Invalid token' });
+    connection.query(sql, values, (error, results) => {
+        console.log("result: ", results, "error: ", error, "sql: ", sql, "values: ", values);
+        if (error) {
+            console.error('Error executing the query:', error);
+            res.status(500).json({ error: 'An error occurred' });
             return;
         }
 
-        // توکن صحیح است و می‌توان به منابع محافظت‌شده دسترسی پیدا کرد
-        res.json({ message: 'Access granted to protected resource', username: decoded.username });
+        if (results.length === 0) {
+            res.status(400).json({ error: 'Invalid username or password' });
+            return;
+        }
+
+        res.json({ message: 'ورود موفقیت‌آمیز بود' });
     });
 });
 
 
 
+app.get('/api/protected', (req, res) => {
+    const token = req.headers.authorization;
 
+    if (!token) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
 
+    jwt.verify(token, config.secretKey, (err, decoded) => {
+        if (err) {
+            res.status(401).json({ error: 'Invalid token' });
+            return;
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
+        res.json({ message: 'Access granted to protected resource', username: decoded.username });
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

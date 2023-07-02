@@ -1,5 +1,6 @@
 // import '@/styles/login.module.css'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { useState } from "react";
 
@@ -13,7 +14,7 @@ export default function Register() {
         username: '',
 
     });
-    
+
 
     const handleChange = (e) => {
         setFormData((prevData) => ({
@@ -25,11 +26,36 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // try {
+        //     const response = await axios.post('http://localhost:3001/api/data', formData);
+        //     console.log(response.data);
+        // } catch (error) {
+        //     console.error('Error submitting data:', error);
+        // }
+        // // پردازش خطا و نمایش پوش‌نوتیفیکیشن با استفاده از SweetAlert2
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Error',
+        //     text: 'An error occurred during login. Please try again later.',
+        // });
+
         try {
+            // ارسال درخواست به سمت سرور
             const response = await axios.post('http://localhost:3001/api/data', formData);
             console.log(response.data);
+
+
+            // ریدایرکت به صفحه مورد نظر
+            window.location.href = '/account/login';
         } catch (error) {
-            console.error('Error submitting data:', error);
+            console.error('Error:', error);
+
+            // پردازش خطا و نمایش پوش‌نوتیفیکیشن با استفاده از SweetAlert2
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred during registration. Please try again later.',
+            });
         }
     };
 
@@ -79,6 +105,7 @@ export default function Register() {
                         placeholder="نام نمایشی"
                     />
                     <button href="#">ساخت حساب</button>
+                    <p style={{ cursor: 'pointer' }} onClick={() => location.href = '/account/login'}>ورود به حساب کاربری</p>
 
 
                 </form>

@@ -493,6 +493,12 @@ h3 {
 .dis {
   font-size: 15px;
   line-height: 1.625 !important;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+
 }
 
 ul {
@@ -556,38 +562,45 @@ input {
 /*  */
 /* login */
 
-div>form{
+form {
   margin-top: 100px !important;
   box-shadow: 0px 8px 50px 0px #22324540;
   padding: 50px;
   border-radius: 5px;
 }
-div>form>input {
+
+input {
   margin-top: 20px !important;
   padding: 20px;
 }
 
-div>form>input:focus {
+input:focus {
   outline: none !important;
 }
+.input-form{
+  width: 100%;
+  padding: 30px 10px;
+}
 
-div>form>button {
+.btn-login-acc, .btn-register-acc {
   background-color: #344456;
   border-radius: 5px;
   margin-top: 20px !important;
   color: #fff;
   padding: 10px;
   border: 0px;
+  width: 100%;
 
 }
-div>form>button:hover {
+
+.btn-login-acc:hover, .btn-register-acc:hover {
   background-color: #567293;
   color: #fff;
 
 }
-div>form>p:hover{
+
+div>form>p:hover {
   color: #567293;
 
 
 }
-

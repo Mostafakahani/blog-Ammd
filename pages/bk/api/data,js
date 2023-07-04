@@ -1,0 +1,12 @@
+export default function handler(req, res, error) {
+    if (error) {
+        console.log(error)
+    }
+    const data = {
+        firstName: 'John3',
+        lastName: 'Doe3',
+        email: 'john.3doe@example.com',
+    };
+    res.status(200).json({ "test": "test" });
+    console.log('test')
+}

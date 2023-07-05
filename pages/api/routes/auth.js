@@ -72,10 +72,10 @@ router.post('/register', (req, res) => {
 
 // روت برای ورود کاربر
 router.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   // یافتن کاربر با ایمیل مشابه
-  User.findOne({ where: { username } })
+  User.findOne({ where: { email } })
     .then((user) => {
       if (user) {
         // بررسی صحت رمز عبور

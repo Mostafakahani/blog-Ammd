@@ -1042,7 +1042,9 @@ div>form>p:hover {
   color: var(--secondary-cta-gray-hover);
   width: 70%;
 }
-
+.side-center-2> div{
+  justify-content: center !important;
+}
 .side-center-2>div {
   display: flex;
   flex-wrap: wrap;
@@ -1116,6 +1118,7 @@ div>form>p:hover {
   justify-content: flex-start;
   background: linear-gradient(rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 16px;
+  margin: 20px;
 }
 
 .item-option-in {
@@ -1217,6 +1220,7 @@ div>form>p:hover {
   font-feature-settings: "tnum", "lnum", "salt", "ss01", "ss02", "ss03", "ss04", "zero", "ordn";
   color: rgba(255, 255, 255, 0.92);
   margin-top: 2rem;
+  width: 60%;
 }
 
 /* footer */
@@ -1264,8 +1268,10 @@ div>form>p:hover {
   color: #fff;
 }
 
+
+
 .Lfooter>div:nth-child(2) {
-  width: clamp(19.625rem, 25.9375vw, 31.125rem);
+  width: 100% ;
   font-family: Inter;
   font-style: normal;
   font-weight: 400;

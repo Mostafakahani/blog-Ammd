@@ -81,8 +81,8 @@ export default function Landing() {
                         </div>
                         <div className="side-center-2">
                             <span>Redefining the way developers use software</span>
-                            <div>
-                                <div className="item-option">
+                            <div className="row">
+                                <div className="item-option col-md col-12">
                                     <div className="item-option-in">
                                         <div className="item-option-in2">
                                             <span>
@@ -98,7 +98,7 @@ export default function Landing() {
                                     </div>
                                     <span className="text-span">Integrate new developers into your organization and extend access to your apps and data without ITOps dependencies.</span>
                                 </div>
-                                <div className="item-option">
+                                <div className="item-option col-md col-12">
                                     <div className="item-option-in">
                                         <div className="item-option-in2">
                                             <span>
@@ -114,7 +114,7 @@ export default function Landing() {
                                     </div>
                                     <span className="text-span">Integrate new developers into your organization and extend access to your apps and data without ITOps dependencies.</span>
                                 </div>
-                                <div className="item-option">
+                                <div className="item-option col-md col-12">
                                     <div className="item-option-in">
                                         <div className="item-option-in2">
                                             <span>

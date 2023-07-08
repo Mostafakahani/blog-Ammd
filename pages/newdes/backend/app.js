@@ -4,7 +4,7 @@ const cors = require('cors');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const app = express();
-const port = 3001;
+const port = 3002;
 
 // تنظیمات CORS
 app.use(cors());
@@ -14,24 +14,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // اتصال به پایگاه داده MySQL با استفاده از Sequelize
-const sequelize = new Sequelize('nodetest', 'root', '', {
+const sequelize = new Sequelize('mydatabase', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });
 
 // تعریف مدل کاربر
-class User extends Model {}
+class User extends Model { }
 User.init({
   username: DataTypes.STRING,
-  password: DataTypes.STRING
-}, { sequelize, modelName: 'account' });
-
-// تعریف مدل پروفایل
-class Profile extends Model {}
-Profile.init({
+  password: DataTypes.STRING,
   fullName: DataTypes.STRING,
   email: DataTypes.STRING
-}, { sequelize, modelName: 'profile' });
+}, { sequelize, modelName: 'users' });
+
+// تعریف مدل پروفایل
+class Profile extends Model { }
+Profile.init({
+  full_Name: DataTypes.STRING,
+  email: DataTypes.STRING
+}, { sequelize, modelName: 'profiles' });
 
 // تعریف رابطه یک به یک بین کاربر و پروفایل
 User.hasOne(Profile);
@@ -46,6 +48,20 @@ sequelize.authenticate()
     console.error('Failed to connect to MySQL database:', err);
   });
 
+// تعریف مسیر برای ثبت نام
+app.post('/register', async (req, res) => {
+  const { username, password, email } = req.body;
+
+  try {
+    // ایجاد کاربر جدید با استفاده از مدل کاربر
+    const user = await User.create({ username, password, email });
+
+    res.status(201).json({ message: 'ثبت نام موفقیت‌آمیز', user });
+  } catch (error) {
+    console.error('Error during registration:', error);
+    res.status(500).json({ message: 'خطا در ثبت نام' });
+  }
+});
 // مسیر و دریافت اطلاعات برای لاگین
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;

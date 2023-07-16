@@ -143,7 +143,6 @@ export default function Landing() {
                             <span>Neverinstall Inc. </span>
                         </div>
                         <div>
-                            
                             Neverinstall streams your favourite apps in an unequalled personal cloud computer with unlimited memory, powerful compute features and native like experience.
                         </div>
                         <div>

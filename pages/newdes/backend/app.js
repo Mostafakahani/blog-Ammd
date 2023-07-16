@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const { Sequelize, Model, DataTypes } = require('sequelize');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 3002;
@@ -18,6 +19,7 @@ const sequelize = new Sequelize('mydatabase', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });
+// 
 
 // تعریف مدل کاربر
 class User extends Model { }
@@ -62,6 +64,7 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'خطا در ثبت نام' });
   }
 });
+
 // مسیر و دریافت اطلاعات برای لاگین
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
@@ -78,7 +81,10 @@ app.post('/login', async (req, res) => {
 
     if (user) {
       // کاربر وجود دارد و اعتبار سنجی موفقیت‌آمیز بوده است
-      res.status(200).json({ message: 'ورود موفقیت‌آمیز', user });
+      // ایجاد توکن JWT
+      const token = jwt.sign({ userId: user.id }, 'mysecretkey');
+
+      res.status(200).json({ message: 'ورود موفقیت‌آمیز', token });
     } else {
       // اعتبار سنجی ناموفق بوده است
       res.status(401).json({ message: 'اعتبار سنجی ناموفق' });
@@ -88,6 +94,55 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ message: 'خطا در لاگین' });
   }
 });
+
+// مسیر ورود به داشبورد
+app.get('/dashboard', verifyToken, (req, res) => {
+  // دریافت کاربر با استفاده از توکن JWT
+  const decodedToken = jwt.verify(req.token, 'mysecretkey');
+  const userId = decodedToken.userId;
+
+  // جستجوی کاربر با استفاده از مدل کاربر و اضافه کردن پروفایل
+  User.findOne({
+    where: { id: userId },
+    include: [Profile]
+  })
+    .then((user) => {
+      if (user) {
+        res.status(200).json({ message: 'دریافت اطلاعات کاربر موفقیت‌آمیز بود', user });
+      } else {
+        res.status(404).json({ message: 'کاربر یافت نشد' });
+      }
+    })
+    .catch((error) => {
+      console.error('Error while fetching user:', error);
+      res.status(500).json({ message: 'خطا در دریافت اطلاعات کاربر' });
+    });
+});
+
+// میان‌افزار بررسی توکن JWT
+function verifyToken(req, res, next) {
+  const bearerHeader = req.headers['authorization'];
+
+  if (typeof bearerHeader !== 'undefined') {
+    const bearerToken = bearerHeader.split(' ')[1];
+    req.token = bearerToken;
+    next();
+  } else {
+    res.sendStatus(403);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // شروع سرور
 app.listen(port, () => {

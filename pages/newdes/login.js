@@ -1,7 +1,5 @@
-// pages/index.js (بخش فرانت‌اند)
-import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useState } from 'react';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -11,19 +9,23 @@ const Login = () => {
 
     try {
       // درخواست لاگین به بک‌اند
-      const response = await axios.post('http://localhost:3001/login', {
+      const response = await axios.post('http://localhost:3002/login', {
         username,
         password
       });
 
-      console.log(response.data);
-      // ادامه فرایند لاگین
+      const { token } = response.data;
+
+      // ذخیره توکن در localStorage
+      localStorage.setItem('token', token);
+
+      // ریدایرکت به داشبورد
+      window.location.href = '/dashboard';
     } catch (error) {
       console.error(error.response.data);
       // پیغام خطا در صورت وجود
     }
   };
-
   return (
     <form onSubmit={handleLogin}>
       <input
@@ -43,4 +45,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login();

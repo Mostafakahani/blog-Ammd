@@ -1,4 +1,3 @@
-// index.js (بخش بک‌اند)
 const express = require('express');
 const cors = require('cors');
 const { Sequelize, Model, DataTypes } = require('sequelize');
@@ -19,30 +18,36 @@ const sequelize = new Sequelize('mydatabase', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });
-// 
 
 // تعریف مدل کاربر
-class User extends Model { }
-User.init({
-  username: DataTypes.STRING,
-  password: DataTypes.STRING,
-  fullName: DataTypes.STRING,
-  email: DataTypes.STRING
-}, { sequelize, modelName: 'users' });
+class User extends Model {}
+User.init(
+  {
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    fullName: DataTypes.STRING,
+    email: DataTypes.STRING
+  },
+  { sequelize, modelName: 'users' }
+);
 
 // تعریف مدل پروفایل
-class Profile extends Model { }
-Profile.init({
-  full_Name: DataTypes.STRING,
-  email: DataTypes.STRING
-}, { sequelize, modelName: 'profiles' });
+class Profile extends Model {}
+Profile.init(
+  {
+    full_Name: DataTypes.STRING,
+    email: DataTypes.STRING
+  },
+  { sequelize, modelName: 'profiles' }
+);
 
 // تعریف رابطه یک به یک بین کاربر و پروفایل
 User.hasOne(Profile);
 Profile.belongsTo(User);
 
 // اتصال به پایگاه داده
-sequelize.authenticate()
+sequelize
+  .authenticate()
   .then(() => {
     console.log('Connected to MySQL database!');
   })
@@ -97,27 +102,42 @@ app.post('/login', async (req, res) => {
 
 // مسیر ورود به داشبورد
 app.get('/dashboard', verifyToken, (req, res) => {
-  // دریافت کاربر با استفاده از توکن JWT
   const decodedToken = jwt.verify(req.token, 'mysecretkey');
   const userId = decodedToken.userId;
 
-  // جستجوی کاربر با استفاده از مدل کاربر و اضافه کردن پروفایل
   User.findOne({
     where: { id: userId },
-    include: [Profile]
+    include: [
+      {
+        model: Profile,
+        attributes: ['full_Name', 'email']
+      }
+    ]
   })
     .then((user) => {
       if (user) {
-        res.status(200).json({ message: 'دریافت اطلاعات کاربر موفقیت‌آمیز بود', user });
+        const userData = user.toJSON();
+
+        sequelize.query('SELECT migration FROM SequelizeMeta ORDER BY createdAt DESC', {
+          type: Sequelize.QueryTypes.SELECT
+        })
+          .then((migrations) => {
+            res.status(200).json({ message: 'دریافت اطلاعات کاربر و میگریشن ها موفقیت‌آمیز بود', user: userData, migrations });
+          })
+          .catch((error) => {
+            console.error('Error while fetching migrations:', error);
+            res.status(500).json({ message: 'خطا در دریافت اطلاعات کاربر و میگریشن ها' });
+          });
       } else {
         res.status(404).json({ message: 'کاربر یافت نشد' });
       }
     })
     .catch((error) => {
       console.error('Error while fetching user:', error);
-      res.status(500).json({ message: 'خطا در دریافت اطلاعات کاربر' });
+      res.status(500).json({ message: 'خطا در دریافت اطلاعات کاربر و میگریشن ها' });
     });
 });
+
 
 // میان‌افزار بررسی توکن JWT
 function verifyToken(req, res, next) {
@@ -131,18 +151,6 @@ function verifyToken(req, res, next) {
     res.sendStatus(403);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // شروع سرور
 app.listen(port, () => {

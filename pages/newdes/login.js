@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
-const Login = () => {
+export default function Login()  {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('ok')
 
     try {
       // درخواست لاگین به بک‌اند
@@ -20,7 +21,7 @@ const Login = () => {
       localStorage.setItem('token', token);
 
       // ریدایرکت به داشبورد
-      window.location.href = '/dashboard';
+      window.location.href = '/newdes/dashbord';
     } catch (error) {
       console.error(error.response.data);
       // پیغام خطا در صورت وجود
@@ -44,5 +45,3 @@ const Login = () => {
     </form>
   );
 };
-
-export default Login();

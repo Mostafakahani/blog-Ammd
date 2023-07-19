@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [migrations, setMigrations] = useState([]);
@@ -30,15 +31,15 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
-      <h1>Welcome, {user.username}</h1>
-      <p>Full Name: {user.fullName}</p>
-      <p>Email: {user.email}</p>
+    <div className="container dashboard-container">
+      <h1 className="dashboard-title">Welcome, {user.username}</h1>
+      <p className="dashboard-info">Full Name: {user.fullName}</p>
+      <p className="dashboard-info">Email: {user.email}</p>
 
-      <h2>Migrations:</h2>
-      <ul>
+      <h2 className="dashboard-migrations-title">Migrations:</h2>
+      <ul className="dashboard-migrations">
         {migrations.map((migration, index) => (
-          <li key={index}>{migration}</li>
+          <li className="dashboard-migration" key={index}>{migration}</li>
         ))}
       </ul>
     </div>

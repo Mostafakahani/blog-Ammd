@@ -1,62 +1,40 @@
-// pages/register.js (بخش فرانت‌اند)
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Register = () => {
+const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-
+  const handleRegister = async () => {
     try {
-      // درخواست ثبت نام به بک‌اند
       const response = await axios.post('http://localhost:3002/register', {
         username,
         password,
-        fullName,
         email
       });
 
-      console.log(response.data);
-      // ادامه فرایند ثبت نام
+      // ثبت نام موفقیت‌آمیز بود
+      console.log(response.data.message);
+      // انجام تغییرات مربوط به صفحه مثلاً انتقال به صفحه ورود
     } catch (error) {
-      console.error(error.response.data);
-      // پیغام خطا در صورت وجود
+      // خطا در ثبت نام
+      console.error('Error during registration:', error.response.data);
+      setErrorMessage(error.response.data.message);
     }
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <input
-        type="text"
-        placeholder="نام کاربری"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="رمز عبور"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="نام کامل"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="ایمیل"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button type="submit">ثبت نام</button>
-    </form>
+    <div>
+      <h1>ثبت نام</h1>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      <input type="text" placeholder="نام کاربری" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input type="password" placeholder="رمز عبور" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="email" placeholder="ایمیل" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <button onClick={handleRegister}>ثبت نام</button>
+    </div>
   );
 };
 
-export default Register;
+export default RegisterPage;

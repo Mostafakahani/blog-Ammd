@@ -19,8 +19,17 @@ const sequelize = new Sequelize('mydatabase', 'root', '', {
   dialect: 'mysql'
 });
 
+sequelize.query('CREATE TABLE IF NOT EXISTS SequelizeMeta (migration VARCHAR(255) NOT NULL, createdAt DATETIME NOT NULL DEFAULT NOW())')
+  .then(() => {
+    console.log('SequelizeMeta table created successfully.');
+    // ادامه کد و تعریف مسیرهای دیگر
+  })
+  .catch((error) => {
+    console.error('Error creating SequelizeMeta table:', error);
+  });
+
 // تعریف مدل کاربر
-class User extends Model {}
+class User extends Model { }
 User.init(
   {
     username: DataTypes.STRING,
@@ -32,7 +41,7 @@ User.init(
 );
 
 // تعریف مدل پروفایل
-class Profile extends Model {}
+class Profile extends Model { }
 Profile.init(
   {
     full_Name: DataTypes.STRING,
@@ -60,6 +69,18 @@ app.post('/register', async (req, res) => {
   const { username, password, email } = req.body;
 
   try {
+    // بررسی تکراری نبودن نام کاربری
+    const existingUsername = await User.findOne({ where: { username } });
+    if (existingUsername) {
+      return res.status(409).json({ message: 'نام کاربری قبلا استفاده شده است' });
+    }
+
+    // بررسی تکراری نبودن ایمیل
+    const existingEmail = await User.findOne({ where: { email } });
+    if (existingEmail) {
+      return res.status(409).json({ message: 'ایمیل قبلا استفاده شده است' });
+    }
+
     // ایجاد کاربر جدید با استفاده از مدل کاربر
     const user = await User.create({ username, password, email });
 
@@ -69,6 +90,7 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'خطا در ثبت نام' });
   }
 });
+
 
 // مسیر و دریافت اطلاعات برای لاگین
 app.post('/login', async (req, res) => {
@@ -110,7 +132,7 @@ app.get('/dashboard', verifyToken, (req, res) => {
     include: [
       {
         model: Profile,
-        attributes: ['full_Name', 'email']
+        attributes: ['fullName', 'email']
       }
     ]
   })
@@ -122,7 +144,8 @@ app.get('/dashboard', verifyToken, (req, res) => {
           type: Sequelize.QueryTypes.SELECT
         })
           .then((migrations) => {
-            res.status(200).json({ message: 'دریافت اطلاعات کاربر و میگریشن ها موفقیت‌آمیز بود', user: userData, migrations });
+            const migrationNames = migrations.map((migration) => migration.migration);
+            res.status(200).json({ message: 'دریافت اطلاعات کاربر و میگریشن ها موفقیت‌آمیز بود', user: userData, migrations: migrationNames });
           })
           .catch((error) => {
             console.error('Error while fetching migrations:', error);

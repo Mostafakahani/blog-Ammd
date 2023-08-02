@@ -1,4 +1,5 @@
-import { Box, Container, Grid, Input, TextField } from '@mui/material';
+import NavBar from '@/Commponent/Navbar';
+import { Box, Container, Grid, Input, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 export default function Login() {
@@ -46,11 +47,12 @@ export default function Login() {
         />
         <button type="submit">ورود</button>
       </form> */}
+      <NavBar />
 
-      <Container container sx={{ border: 'solid 1px blue'  }} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Container container="true" sx={{ border: 'solid 1px blue' }} rowspacing={1} columnspacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} spacing={0} >
-          <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px' }} xs={6} md={4} >
-            <TextField  multiline label='test'></TextField>
+          <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px', }} xs={6} md={4} >
+            <Typography>Test</Typography>
           </Grid>
         </Grid>
 

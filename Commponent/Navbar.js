@@ -1,14 +1,16 @@
-import { AppBar, Box, Button, Container, Grid, IconButton, Menu, Toolbar, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Button, Container, Grid, IconButton, Menu, Toolbar, Tooltip, Typography } from "@mui/material";
 import AdbIcon from '@mui/icons-material/Adb';
 import { MenuItem } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from '@mui/material/styles';
+import Fab from '@mui/material/Fab';
 
 const NavBar = () => {
 
     const pages = ['محصولات', 'افزودن', 'وبلاگ'];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
+    const [status, setStatus] = useState(true)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -26,8 +28,16 @@ const NavBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    return (
 
+    const StyledFab = styled(Fab)({
+        position: 'related',
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+    });
+    return (
         <>
             <Container container="true" sx={{ border: 'solid 1px #252525' }} >
                 <Toolbar>
@@ -122,16 +132,55 @@ const NavBar = () => {
                             </Button>
                         ))}
                     </Box>
+                    {/* Avatar */}
+                    {
+                        status ? (
+                            <>
+                                <Box sx={{ flexGrow: 0 }}>
+                                    <Tooltip title="Open settings">
+                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                            <Avatar alt="Remy Sharp" src="" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Menu
+                                        sx={{ mt: '45px' }}
+                                        id="menu-appbar"
+                                        anchorEl={anchorElUser}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorElUser)}
+                                        onClose={handleCloseUserMenu}
+                                    >
+                                        {settings.map((setting) => (
+                                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                                <Typography textAlign="center">{setting}</Typography>
+                                            </MenuItem>
+                                        ))}
+                                    </Menu>
+                                </Box>
+                            </>
+                        ) : (
+                            console.log('error')
+                        )
+                    }
+
 
                 </Toolbar>
                 <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, display: { xs: 'flex', md: 'none' } }}>
                     <Toolbar>
-                        <IconButton color="inherit" aria-label="open drawer" onClick={handleOpenNavMenu}>
+                        {/* <IconButton color="inherit" aria-label="open drawer" onClick={handleOpenNavMenu}>
                             <MenuIcon />
-                        </IconButton>
-                        {/* <StyledFab color="secondary" aria-label="add">
-                            <AddIcon />
-                        </StyledFab> */}
+                        </IconButton> */}
+                        <StyledFab color="secondary" aria-label="open drawer" onClick={handleOpenNavMenu}>
+                            <MenuIcon />
+                        </StyledFab>
                         <Box sx={{ flexGrow: 1 }} />
                         {/* <IconButton color="inherit">
                             <MenuIcon />
@@ -141,6 +190,7 @@ const NavBar = () => {
                         </IconButton> */}
                     </Toolbar>
                 </AppBar>
+
 
 
             </Container>

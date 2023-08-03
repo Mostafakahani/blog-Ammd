@@ -8,7 +8,7 @@ import Fab from '@mui/material/Fab';
 
 const NavBar = () => {
 
-    const pages = ['محصولات', 'افزودن', 'وبلاگ'];
+    const pages = ['محصولات', 'افزودن', 'وبلاگ', 'نویسندگان'];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const [status, setStatus] = useState(true)
     const [anchorElNav, setAnchorElNav] = React.useState(null);

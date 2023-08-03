@@ -1,3 +1,4 @@
+import ItemHome from '@/Commponent/ItemHome';
 import NavBar from '@/Commponent/Navbar';
 import SlideShow from '@/Commponent/SlideShow/SliderHomePage';
 import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
@@ -74,8 +75,8 @@ export default function Login() {
             <Typography>Test</Typography>
           </Grid>
         </Grid>
-
       </Container>
+      <ItemHome/>
 
 
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
-import ImageSlider from 'react-simple-image-slider';
-import { Box } from '@mui/material';
+import { Paper, Typography, Button } from '@mui/material';
+import Carousel from 'react-material-ui-carousel';
+import { Box, Container, Grid, Input, TextField, styled } from '@mui/material';
 
 const images = [
     {
@@ -17,29 +18,17 @@ const images = [
 
 const SlideShow = () => {
     return (
-        <Box
-            sx={{
-                width: '100%',
-                maxWidth: 600,
-                marginX: 'auto',
-                marginY: 4,
-                padding: 2,
-                border: '1px solid #ccc',
-                borderRadius: 4,
-            }}
-        >
-            <ImageSlider
-                width="100%"
-                height={400}
-                images={images}
-                showNavs
-                showBullets
-                navStyle={2}
-                bulletStyle={2}
-                style={{position: 'relative'}}
-            />
-        </Box>
+        <Container sx={{ maxWidth: { xs: 1, md: 1, sm: 1 } }}>
+            <Carousel>
+                {images.map((image, index) => (
+                    <Grid key={index}>
+                        <Box sx={{
+                            width: '100%'
+                        }} component='img' src={image.url} alt={`Slide ${index}`} />
+                    </Grid>
+                ))}
+            </Carousel>
+        </Container>
     );
 };
-
 export default SlideShow;

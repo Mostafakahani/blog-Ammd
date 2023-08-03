@@ -39,7 +39,7 @@ const NavBar = () => {
     });
     return (
         <>
-            <Container container="true" sx={{ border: 'solid 1px #252525' }} >
+            <Container maxWidth="true" sx={{ border: 'solid 1px #252525' }} >
                 <Toolbar>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography

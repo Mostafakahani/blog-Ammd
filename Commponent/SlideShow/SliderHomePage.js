@@ -1,34 +1,90 @@
-import React from 'react';
-import { Paper, Typography, Button } from '@mui/material';
-import Carousel from 'react-material-ui-carousel';
-import { Box, Container, Grid, Input, TextField, styled } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Button, Card } from '@material-ui/core';
+import SwipeableViews from 'react-swipeable-views';
+import { ButtonBase, IconButton } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+const sliderStyles = {
+    root: {
+        margin: 'auto',
+        overflow: 'hidden',
+        position: 'relative', // اضافه کردن position برای قرار دادن دکمه‌ها
+    },
+    mediaContainer: {
+        width: '100%',
+    },
+    media: {
+        width: '100%',
+        height: 'auto',
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: 16,
+        position: 'absolute', // اضافه کردن position برای دکمه‌ها
+        left: 0, // قرار دادن دکمه‌ها در چپ
+        right: 0, // قرار دادن دکمه‌ها در راست
+        bottom: 25, // قرار دادن دکمه‌ها در پایین
+    },
+    button: {
+        backgroundColor: '#ffffff10',
+        color: '#000',
+        padding: '5px',
+        margin: '0px 15px 0px 15px'
+        ,
+        border: 'none',
+        cursor: 'pointer',
+        borderRadius: '50%',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        fontWeight: 'bold',
+    },
+};
 
-const images = [
-    {
-        url: "https://dkstatics-public.digikala.com/digikala-adservice-banners/61fcbe4ce7991f5f6c0c1845cca5a68652da2d4d_1690699957.jpg",
-    },
-    {
-        url: "https://dkstatics-public.digikala.com/digikala-adservice-banners/b7ce26b91a2ec80e633bf9cf7fdfc527f451ac7a_1690898814.jpg",
-    },
-    {
-        url: "https://dkstatics-public.digikala.com/digikala-adservice-banners/98d0c52c68daa732ea2a34b345fec80322654476_1690974366.jpg",
-    },
-    // ادامه تصاویر...
-];
+const Slideshow = ({ images }) => {
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-const SlideShow = () => {
+    const handleNext = () => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    };
+
+    const handlePrevious = () => {
+        setCurrentSlide((prevSlide) =>
+            prevSlide === 0 ? images.length - 1 : prevSlide - 1
+        );
+    };
+
+    useEffect(() => {
+        const interval = setInterval(handleNext, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <Container sx={{ maxWidth: { xs: 1, md: 1, sm: 1 } }}>
-            <Carousel>
+        <Card style={sliderStyles.root}>
+            <SwipeableViews
+                index={currentSlide}
+                onChangeIndex={setCurrentSlide}
+                enableMouseEvents
+            >
                 {images.map((image, index) => (
-                    <Grid key={index}>
-                        <Box sx={{
-                            width: '100%'
-                        }} component='img' src={image.url} alt={`Slide ${index}`} />
-                    </Grid>
+                    <div key={index} style={{ ...sliderStyles.mediaContainer }}>
+                        <img
+                            style={{ ...sliderStyles.media, width: '100%' }}
+                            src={image.url}
+                            alt={`Slide ${index + 1}`}
+                        />
+                    </div>
                 ))}
-            </Carousel>
-        </Container>
+            </SwipeableViews>
+            <div style={sliderStyles.buttonContainer}>
+                <ButtonBase sx={sliderStyles.button} onClick={handlePrevious}>
+                    <ArrowForwardIosIcon />
+                </ButtonBase>
+                <ButtonBase sx={sliderStyles.button} onClick={handleNext}>
+                    <ArrowBackIosNewIcon />
+                </ButtonBase>
+            </div>
+        </Card>
     );
 };
-export default SlideShow;
+
+export default Slideshow;

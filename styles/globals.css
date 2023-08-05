@@ -105,10 +105,63 @@
     url("fonts/Peyda-Black.woff2") format("woff2");
 }
 
+/* global.css */
+
+/* Import Yekan Bakh font family */
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 900;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 700;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 800;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-ExtraBlack.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 600;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 300;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 400;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 500;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  font-weight: 200;
+  src: url('./fonts/YekanBakhFamily/YekanBakh-Thin.ttf') format('truetype');
+}
+
+/* The rest of your global CSS styles */
+
 body {
   padding: 0px;
   margin: 5rem;
-  font-family: Peyda;
+  font-family: Yekan Bakh;
   color: #fff;
   /* background-color: #000000 ; */
   font-size: 2rem;
@@ -1042,9 +1095,11 @@ div>form>p:hover {
   color: var(--secondary-cta-gray-hover);
   width: 70%;
 }
-.side-center-2> div{
+
+.side-center-2>div {
   justify-content: center !important;
 }
+
 .side-center-2>div {
   display: flex;
   flex-wrap: wrap;
@@ -1271,7 +1326,7 @@ div>form>p:hover {
 
 
 .Lfooter>div:nth-child(2) {
-  width: 100% ;
+  width: 100%;
   font-family: Inter;
   font-style: normal;
   font-weight: 400;

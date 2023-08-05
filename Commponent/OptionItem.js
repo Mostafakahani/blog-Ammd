@@ -33,6 +33,11 @@ const OptionItem = () => {
 
     return (
         <Container sx={{ padding: 0, margin: 0, width: '100%' }}>
+            <Typography textAlign='center' variant='span' fontSize={11} fontFamily='Yekan Bakh !important' color='#252525' sx={{
+                display: 'flex',
+                justifyContent:'center',
+                my: 3
+            }}>برای دیدن سوالات تصادفی جدیدتر می تونی صفحه رو رفرش کنی!</Typography>
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{ textAlign: 'center', justifyContent: 'center' }}>
                 {OptionsList.map((x, index) => (
                     <Grid item xs={12} sm={6} md={3} key={index}>
@@ -40,8 +45,8 @@ const OptionItem = () => {
                             justifyContent: { xs: 'space-around', sm: 'space-between' }
                         }}>
                             <Box textAlign="center">
-                                <Typography fontSize={{ md: 12, xs: 11, sm: 11 }} overflow='hidden' fontWeight='bold'>{x.text}</Typography>
-                                <Typography fontSize={11}>{x.caption}</Typography>
+                                <Typography fontSize={{ md: 12, xs: 11, sm: 11 }} overflow='hidden' fontWeight='600'>{x.text}</Typography>
+                                <Typography fontFamily='Yekan Bakh !important' fontSize={11}>{x.caption}</Typography>
                             </Box>
                             <StyledImage src={x.urlImg} />
                         </StyledGridItem>

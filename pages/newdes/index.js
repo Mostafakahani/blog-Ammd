@@ -1,3 +1,4 @@
+import ImageItem from '@/Commponent/ImageItem';
 import ItemHome from '@/Commponent/ItemHome';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
@@ -83,9 +84,11 @@ export default function Login() {
           </Grid>
         </Grid>
       </Container>
-      <Container container="true" sx={{my: 3}}>
-
+      <Container container="true" sx={{ my: 3 }}>
         <OptionItem />
+      </Container>
+      <Container container='true'>
+        <ImageItem />
       </Container>
       <ItemHome />
 

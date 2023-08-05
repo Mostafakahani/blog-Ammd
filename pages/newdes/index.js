@@ -1,5 +1,6 @@
 import ItemHome from '@/Commponent/ItemHome';
 import NavBar from '@/Commponent/Navbar';
+import OptionItem from '@/Commponent/OptionItem';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
 import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
 import axios from 'axios';
@@ -75,12 +76,16 @@ export default function Login() {
       </form> */}
       <NavBar />
       <Slideshow images={images} />
-      <Container container="true" sx={{ border: 'solid 1px blue' }} rowspacing={1} columnspacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} spacing={0} >
+      <Container container="true" sx={{ border: 'solid 1px blue' }}>
+        <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} >
           <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px', }} xs={6} md={4} >
             <Typography>Test</Typography>
           </Grid>
         </Grid>
+      </Container>
+      <Container container="true" sx={{my: 3}}>
+
+        <OptionItem />
       </Container>
       <ItemHome />
 

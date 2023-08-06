@@ -1,11 +1,13 @@
 import ImageItem from '@/Commponent/ImageItem';
-import ItemHome from '@/Commponent/ItemHome';
+import BlogCard from '@/Commponent/BlogLIst/BlogCard';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
 import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
+import BlogList from '@/Commponent/BlogLIst/BlogList';
+import ArticleList from '@/Commponent/BlogLIst/ArticleList';
 // const useStyles = styled((theme) => ({
 //   root: {
 //     display: "flex",
@@ -57,6 +59,22 @@ export default function Login() {
     { url: 'https://dkstatics-public.digikala.com/digikala-adservice-banners/b7ce26b91a2ec80e633bf9cf7fdfc527f451ac7a_1690898814.jpg', alt: 'Image 2' },
     { url: 'https://dkstatics-public.digikala.com/digikala-adservice-banners/61fcbe4ce7991f5f6c0c1845cca5a68652da2d4d_1690699957.jpg', alt: 'Image 3' },
   ]
+  const blogPosts = [
+    {
+      title: "عنوان مقاله 1",
+      image: "URL مقاله 1",
+      content: "محتوای مقاله 1",
+      slug: "article-1",
+    },
+    {
+      title: "عنوان مقاله 2",
+      image: "URL مقاله 2",
+      content: "محتوای مقاله 2",
+      slug: "article-2",
+    },
+    // ...
+  ];
+
 
   return (
     <>
@@ -84,14 +102,27 @@ export default function Login() {
           </Grid>
         </Grid>
       </Container>
-      <Container container="true" sx={{ my: 3 }}>
+      <Container maxWidth='true' sx={{ my: 3 }}>
         <OptionItem />
       </Container>
-      <Container container='true'>
+      <Container maxWidth='true'>
         <ImageItem />
       </Container>
-      <ItemHome />
+      {/* <Container> */}
+      <Container>
+        <Grid container spacing={2}>
+          {blogPosts.map((post, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <ArticleList
+                blogPosts={blogPosts}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
+
+      {/* </Container> */}
 
     </>
   );

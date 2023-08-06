@@ -564,16 +564,12 @@ li {
 
 }
 
-.section-post {}
-
 .profiles {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   padding: 0;
 }
-
-.profile-text {}
 
 /* New */
 .addBoxPost {

@@ -1,3 +1,4 @@
+import BlogItem from '@/Commponent/BlogItem';
 import ImageItem from '@/Commponent/ImageItem';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
@@ -68,24 +69,29 @@ export default function Login() {
         />
         <button type="submit">ورود</button>
       </form> */}
-      <NavBar />
-      <Slideshow images={images} />
-      <Container container="true" sx={{ border: 'solid 1px blue' }}>
-        <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} >
-          <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px', }} xs={6} md={4} >
-            <Typography>Test</Typography>
+      <Container container='true' sx={{
+        backgroundColor: 'black'
+      }}>
+
+        <NavBar />
+        <Slideshow images={images} />
+        {/* <Container container="true" sx={{ border: 'solid 1px blue' }}>
+          <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} >
+            <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px', }} xs={6} md={4} >
+              <Typography>Test</Typography>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-      <Container maxWidth='true' sx={{ my: 3 }}>
-        <OptionItem />
-      </Container>
-      <Container maxWidth='true'>
-        <ImageItem />
-      </Container>
-      <Container>
-        <Grid container spacing={2}>
-        </Grid>
+        </Container> */}
+        <Container maxWidth='true' sx={{ my: 3 }}>
+          <OptionItem />
+        </Container>
+        <Container maxWidth='true'>
+          <ImageItem />
+        </Container>
+        <Container container='true'>
+          <BlogItem />
+
+        </Container>
       </Container>
 
 

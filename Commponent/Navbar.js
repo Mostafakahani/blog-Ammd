@@ -41,7 +41,7 @@ const NavBar = () => {
         <>
             <Container maxWidth="true" sx={{ border: 'solid 1px #252525' }} >
                 <Toolbar>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'white' }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -53,7 +53,7 @@ const NavBar = () => {
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
-                            color: 'inherit',
+                            color: 'white',
                             textDecoration: 'none',
                             marginLeft: '20px'
                         }}
@@ -126,7 +126,7 @@ const NavBar = () => {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: '#252525', display: 'block' }}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
                             </Button>

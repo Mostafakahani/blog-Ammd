@@ -156,6 +156,11 @@
   src: url('./fonts/YekanBakhFamily/YekanBakh-Thin.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Allison';
+  src: url('./fonts/YekanBakhFamily/Allison-Regular.ttf') format('truetype');
+}
+
 /* The rest of your global CSS styles */
 
 body {
@@ -1446,7 +1451,7 @@ div>form>p:hover {
 
 
 body {
-  background-color: #343a40;
+  background-color: black !important;
   color: #ffffff;
 }
 

@@ -6,7 +6,7 @@ const StyledGridItem = styled(Grid)(({ theme }) => ({
     flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#ffffff', // تغییر رنگ پس زمینه
+    backgroundColor: '#252525', // تغییر رنگ پس زمینه
     borderRadius: '5px', // تغییر شکل گوشه‌ها
     boxShadow: '0 0.02rem 0.04rem rgba(0,0,0,0.1), 0 0.07rem 0.2rem rgba(0,0,0,0.1)', '&:hover': {
         transition: '.5s',

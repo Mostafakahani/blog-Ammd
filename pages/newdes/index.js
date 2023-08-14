@@ -82,7 +82,7 @@ export default function Login() {
             </Grid>
           </Grid>
         </Container> */}
-        <Container maxWidth='true' sx={{ my: 3 }}>
+        <Container maxWidth='true' sx={{ my: 3, mt: '80px' }}>
           <OptionItem />
         </Container>
         <Container maxWidth='true'>

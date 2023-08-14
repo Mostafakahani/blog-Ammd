@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
+import { Box, Container, Grid, Input, Paper, TextField, Typography, styled } from '@mui/material';
 
 const StyledGridItem = styled(Grid)(({ theme }) => ({
     width: '100%',
@@ -33,8 +33,9 @@ const OptionItem = () => {
 
     return (
         <>
+            {/* #5D00D0 */}
             {/* <Container container="true"> */}
-            <Typography textAlign='center' variant='span' fontSize={{ md: 18, xs: 11 }} fontFamily='Yekan Bakh !important' fontWeight='600' color='#5D00D0' sx={{
+            <Typography textAlign='center' variant='span' fontSize={{ md: 20, xs: 11 }} fontFamily='Yekan Bakh !important' fontWeight='600' color='white' sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 my: 3,
@@ -54,16 +55,34 @@ const OptionItem = () => {
                     justifyContent: 'center',
                     my: 3,
                     position: 'absolute',
-                    top: '34%',
+                    top: '38%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     WebkitBackgroundClip: 'text',
-                    backgroundImage: 'linear-gradient(to top, white, #171721)',
+                    backgroundImage: 'linear-gradient(to bottom, white, #171721)',
                     zIndex: '1'
                 }}
             >
                 Sample projects carried out in the course
             </Typography>
+            <Grid
+                sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    mb: 5,
+                }}
+            >
+                <hr style={{ 
+                    color: 'red', width: '50%', textAlign: 'center', 
+                    boxShadow: '#ff000087 0px 6px 20px 12px',
+                    position: 'absolute',
+                    top: '400px'
+                    
+                    
+                    }} />
+            </Grid>
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{ textAlign: 'center', justifyContent: 'center' }}>
                 {OptionsList.map((x, index) => (
                     <Grid item xs={12} sm={6} md={3} key={index}>

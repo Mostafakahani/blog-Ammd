@@ -42,7 +42,9 @@ const OptionItemTwo = () => {
                                 justifyItems: 'center',
                                 textAlign: 'center',
                                 justifyContent: 'center',
-                                height: '100px'
+                                height: '100px',
+                                borderRadius: 2
+
 
                             }}
                         >
@@ -50,6 +52,7 @@ const OptionItemTwo = () => {
                                 sx={{
                                     position: 'relative',
                                     bottom: '10px',
+                                    
                                 }}
                                 src={'/icon.svg'} alt={`Icon ${index}`} />
                             <Box textAlign="center"

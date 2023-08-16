@@ -167,10 +167,10 @@ body {
   padding: 0px;
   margin: 5rem;
   font-family: Yekan Bakh;
-  color: #fff;
+  color: #000000;
   /* background-color: #000000 ; */
   font-size: 2rem;
-  background: #F6F8FA !important;
+  background: #0e0f11 !important;
   /* background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,75,1) 29%, rgba(0,22,27,1) 100%) !important; */
 
 }
@@ -1451,7 +1451,7 @@ div>form>p:hover {
 
 
 body {
-  background-color: black !important;
+  background-color: black ;
   color: #ffffff;
 }
 

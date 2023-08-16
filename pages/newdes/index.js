@@ -1,3 +1,4 @@
+import AboutItems from '@/Commponent/AboutItems';
 import BlogItem from '@/Commponent/BlogItem';
 import Circals from '@/Commponent/Circals';
 import ImageItem from '@/Commponent/ImageItem';
@@ -5,6 +6,7 @@ import ImageStoryBox from '@/Commponent/ImageStoryBox';
 import ItemOption from '@/Commponent/ItemOption';
 import LineItemRed from '@/Commponent/LineItemRed';
 import NavBar from '@/Commponent/Navbar';
+import Navbar2 from '@/Commponent/Navbar2';
 import OptionItem from '@/Commponent/OptionItem';
 import OptionItemTwo from '@/Commponent/OptionItem2';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
@@ -77,10 +79,11 @@ export default function Login() {
       </form> */}
       <Circals />
       <Container container='true' sx={{
-        backgroundColor: 'black'
+        backgroundColor: '0e0f11'
       }}>
 
-        <NavBar />
+        {/* <NavBar /> */}
+        <Navbar2 />
         <Slideshow images={images} />
         {/* <Container container="true" sx={{ border: 'solid 1px blue' }}>
           <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} >
@@ -105,6 +108,11 @@ export default function Login() {
           />
 
           <ItemOption />
+          <LineItemRed
+            persianText={'جزئیات دوره اینستاگراف'}
+            englishText={'Details of the Instagram period'}
+          />
+          <AboutItems />
           <ImageItem />
           <BlogItem />
         </Container>

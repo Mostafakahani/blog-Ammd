@@ -37,10 +37,10 @@ const ItemOption = () => {
                     item
                     xs={12}
                     sm={5.5}
-                    md={2.5}
+                    md={2.7}
                     key={index}
                     sx={{
-                        backgroundColor: '#271F2A',
+                        backgroundColor: '#271f2a7d',
                         borderRadius: 2,
                         padding: 2,
                         margin: '5px',
@@ -51,13 +51,17 @@ const ItemOption = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Box component='img' src={item.imgUrl} />
-                    <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>
+                    <Box component='img' sx={{ marginTop: '10px' }} src={item.imgUrl} />
+                    <Typography variant="h6" sx={{
+                        color: 'white', fontWeight: 'bold', fontSize: '18px'
+                        , marginBottom: '5px',
+                        marginTop: '5px'
+                    }}>
                         {item.titel}
                     </Typography>
                     <Typography variant="body1" sx={{
                         color: 'white',
-                        fontSize: '13px',
+                        fontSize: '.875rem',
                         display: ' flex',
                         flexWrap: 'nowrap',
                         maxWidth: ' 100%',

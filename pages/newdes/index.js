@@ -1,5 +1,6 @@
 import BlogItem from '@/Commponent/BlogItem';
 import ImageItem from '@/Commponent/ImageItem';
+import ItemOption from '@/Commponent/ItemOption';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
@@ -86,11 +87,11 @@ export default function Login() {
           <OptionItem />
         </Container>
         <Container maxWidth='true'>
+          <ItemOption/>
           <ImageItem />
         </Container>
         <Container container='true'>
           <BlogItem />
-
         </Container>
       </Container>
 

@@ -99,10 +99,7 @@ const OptionItem = () => {
             {/* #5D00D0 */}
             {/* <Container container="true"> */}
 
-            <LineItemRed
-                persianText={'برای دیدن سوالات تصادفی جدیدتر می‌توانید صفحه را رفرش کنید!'}
-                englishText={'Sample projects carried out in the course'}
-            />
+
 
 
             <Grid container spacing={{ xs: 2, md: 3 }} sx={{
@@ -169,6 +166,22 @@ const OptionItem = () => {
             <LineItemRed
                 persianText={'مسیر یادگیری دوره'}
                 englishText={'The course of learning the course'}
+            />
+            <Typography 
+            sx={{
+                color: '#fff',
+                textAlign: 'center',
+                marginTop: {sm: '-100px', xs: '-50px'}
+            }}>
+                آموزش های دوره اینستاگراف به دو دسته ثابت و متحرک تقسیم میشود , نمونه ثابت همون عکس نوشته هایی هستش که قطعا تو خیلی از پیج ها دیدید، ولی ما برای اولین تو ایران طراحی متحرک بدون نیاز به افترافکت یا بلندر بهتون آموزش دادیم که میتونید نمونه جلسات دوره را پایین همین صفحه ببینید
+            </Typography>
+
+
+
+
+            <LineItemRed
+                persianText={'برای دیدن سوالات تصادفی جدیدتر می‌توانید صفحه را رفرش کنید!'}
+                englishText={'Sample projects carried out in the course'}
             />
             {/* </Container> */}
         </>

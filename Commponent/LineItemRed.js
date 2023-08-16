@@ -1,4 +1,3 @@
-import { Height } from '@mui/icons-material';
 import { Box, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';

@@ -3,7 +3,8 @@ import { Box, Grid } from "@mui/material";
 const images = [
     { src: "/InstagramStory.jpg", alt: "Image 1" },
     { src: "/InstagramStory.jpg", alt: "Image 2" },
-    { src: "/InstagramStory .jpg", alt: "Image 3" },
+    { src: "/InstagramStory.jpg", alt: "Image 3" },
+    { src: "/InstagramStory.jpg", alt: "Image 4" },
     // Add more images to the array
 ];
 
@@ -12,7 +13,7 @@ const ImageStoryBox = () => {
         <Grid container spacing={2}>
             {images.map((image, index) => (
                 <Grid item xs={6} md={3} key={index}>
-                    <Box component='img' src={image.src} alt={image.alt} sx={{ width: '100%' }} />
+                    <Box component='img' src={image.src} alt={image.alt} sx={{ width: '100%', borderRadius: 2 }} />
                 </Grid>
             ))}
         </Grid>

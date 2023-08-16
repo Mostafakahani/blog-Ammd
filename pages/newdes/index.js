@@ -1,4 +1,5 @@
 import BlogItem from '@/Commponent/BlogItem';
+import Circals from '@/Commponent/Circals';
 import ImageItem from '@/Commponent/ImageItem';
 import ImageStoryBox from '@/Commponent/ImageStoryBox';
 import ItemOption from '@/Commponent/ItemOption';
@@ -74,6 +75,7 @@ export default function Login() {
         />
         <button type="submit">ورود</button>
       </form> */}
+      <Circals />
       <Container container='true' sx={{
         backgroundColor: 'black'
       }}>
@@ -96,17 +98,14 @@ export default function Login() {
             englishText={'The course of learning the course'}
           />
           <TypeSubText text={'آموزش های دوره اینستاگراف به دو دسته ثابت و متحرک تقسیم میشود , نمونه ثابت همون عکس نوشته هایی هستش که قطعا تو خیلی از پیج ها دیدید، ولی ما برای اولین تو ایران طراحی متحرک بدون نیاز به افترافکت یا بلندر بهتون آموزش دادیم که میتونید نمونه جلسات دوره را پایین همین صفحه ببینید'} />
+          <ImageStoryBox />
           <LineItemRed
             persianText={'برای دیدن سوالات تصادفی جدیدتر می‌توانید صفحه را رفرش کنید!'}
             englishText={'Sample projects carried out in the course'}
           />
-          <ImageStoryBox />
-        </Container>
-        <Container maxWidth='true'>
+
           <ItemOption />
           <ImageItem />
-        </Container>
-        <Container container='true'>
           <BlogItem />
         </Container>
       </Container>

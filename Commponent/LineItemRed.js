@@ -30,7 +30,7 @@ const LineItemRed = (props) => {
     // }, [props.text]);
     // console.log(ref.current.getBoundingClientRect().width)
     return (
-        <Box sx={{
+        <Box mt={10} sx={{
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',

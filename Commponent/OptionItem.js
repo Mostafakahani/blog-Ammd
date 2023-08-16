@@ -105,7 +105,10 @@ const OptionItem = () => {
             />
 
 
-            <Grid container spacing={{ xs: 2, md: 3 }} sx={{ textAlign: 'center', justifyContent: 'center' }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} sx={{
+                textAlign: 'center', justifyContent: 'center',
+                marginTop: { md: '0px', sm: '-50px', xs: '-60px' }
+            }}>
                 {/* {OptionsList.map((x, index) => ( */}
                 <Grid item xs={12} sm={6} md={3}>
                     <StyledGridItem sx={{
@@ -163,6 +166,10 @@ const OptionItem = () => {
 
                 {/* ))} */}
             </Grid>
+            <LineItemRed
+                persianText={'مسیر یادگیری دوره'}
+                englishText={'The course of learning the course'}
+            />
             {/* </Container> */}
         </>
     );

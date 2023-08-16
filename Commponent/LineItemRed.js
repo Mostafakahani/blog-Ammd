@@ -1,30 +1,76 @@
+import { Height } from '@mui/icons-material';
 import { Box, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        position: 'relative',
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '-0.2rem',
+            left: 0,
+            width: 'auto',
+            height: '0.1rem',
+            backgroundColor: 'red ',
+        },
+    },
+}));
 
 const LineItemRed = (props) => {
     const theme = useTheme();
-
+    const classes = useStyles();
+    // const ref = React.useRef(null);
+    // const [width, setWidth] = React.useState('');
+    // React.useEffect(() => {
+    //     if (ref.current) {
+    //         setWidth(ref.current.getBoundingClientRect().width );
+    //     }
+    // }, [props.text]);
+    // console.log(ref.current.getBoundingClientRect().width)
     return (
-        <Box>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        }}>
             <Typography
+                // ref={ref}
+                className={classes.root}
                 sx={{
+
                     textAlign: 'center',
-                    fontSize: { md: 20, xs: 12 },
+                    fontSize: { md: 20, sm: 15, xs: 12 },
                     fontFamily: 'Yekan Bakh !important',
                     fontWeight: 600,
                     color: 'white',
                     my: 3,
                     position: 'relative',
-                    zIndex: 5,
+                    zIndex: 10,
+                    width: 'max-content'
                 }}
             >
                 {props.persianText}
+                <Box
+                    component='span'
+                    sx={{
+                        width: '100%',
+                        height: '0.1rem',
+                        backgroundColor: 'red ',
+                        display: 'block',
+                        position: 'relative',
+                        bottom: '-0.2rem',
+                        left: 0,
+                    }}
+                />
             </Typography>
             <Typography
                 sx={{
                     textAlign: 'center',
                     fontFamily: 'Allison, sans-serif !important',
-                    fontSize: { md: 50, xs: 35 },
+                    fontSize: { md: 50, sm: 45, xs: 35 },
                     fontWeight: 600,
                     color: 'transparent',
                     display: 'flex',
@@ -34,8 +80,8 @@ const LineItemRed = (props) => {
                     WebkitBackgroundClip: 'text',
                     backgroundImage: 'linear-gradient(to bottom, white, #171721)',
                     position: 'relative',
-                    top: '-125px',
-                    zIndex: 2,
+                    top: { md: '-125px', sm: '-102px', xs: '-85px' },
+                    zIndex: 1,
                     userSelect: 'none',
                     MozUserSelect: 'none',
                     WebkitUserSelect: 'none',
@@ -43,7 +89,7 @@ const LineItemRed = (props) => {
             >
                 {props.englishText}
             </Typography>
-            <Grid
+            {/* <Grid
                 container
                 justifyContent="center"
                 alignItems="center"
@@ -54,38 +100,58 @@ const LineItemRed = (props) => {
                     position: 'relative',
                 }}
             >
-                <hr
-                    style={{
-                        width: '50%',
+                <Grid // Top Line
+                    sx={{
+                        width: { md: '50%', sm: '70%', xs: '70%' },
                         color: 'red',
                         textAlign: 'center',
-                        boxShadow: '#ff000087 0px 6px 20px 12px',
+                        boxShadow: 'rgba(255, 0, 0, 0.53) 0px 0px 0px 1px',
                         position: 'absolute',
-                        top: '50%',
+                        top: { md: '10px', sm: '-112px', xs: '-90px' },
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        [theme.breakpoints.only('xs')]: {
-                            width: '100%',
-                            top: '-100px',
-                        },
+                        height: '1px',
+                        zIndex: '5'
                     }}
                 />
-                <hr
-                    style={{
-                        width: '50%',
+                <Grid //Down Line
+                    sx={{
+                        width: { md: '50%', sm: '70%', xs: '70%' },
                         color: 'red',
                         textAlign: 'center',
+                        boxShadow: 'rgba(255, 0, 0, 0.53) 0px 10px 20px 7px',
                         position: 'absolute',
-                        top: '50%',
+                        top: { md: '10px', sm: '-112px', xs: '-90px' },
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        [theme.breakpoints.only('xs')]: {
-                            width: '100%',
-                            top: '-100px',
-                        },
+                        height: '1px',
+                        zIndex: '2'
                     }}
                 />
-            </Grid>
+            </Grid> */}
+            {/* <Grid>
+                <Typography
+                    ref={ref}
+                    className={classes.root}
+                    variant="h6"
+                    color="secondary"
+                    style={{ width: 'max-content' }}
+                >
+                    {props.text}
+                    <Box
+                        component='span'
+                        sx={{
+                            width,
+                            height: '0.1rem',
+                            backgroundColor: 'red ',
+                            display: 'block',
+                            position: 'relative',
+                            bottom: '-0.2rem',
+                            left: 0,
+                        }}
+                    />
+                </Typography>
+            </Grid> */}
         </Box>
     );
 };

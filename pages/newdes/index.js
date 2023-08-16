@@ -1,10 +1,13 @@
 import BlogItem from '@/Commponent/BlogItem';
 import ImageItem from '@/Commponent/ImageItem';
+import ImageStoryBox from '@/Commponent/ImageStoryBox';
 import ItemOption from '@/Commponent/ItemOption';
+import LineItemRed from '@/Commponent/LineItemRed';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
 import OptionItemTwo from '@/Commponent/OptionItem2';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
+import TypeSubText from '@/Commponent/TypeSubText';
 import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
@@ -87,6 +90,17 @@ export default function Login() {
         <Container maxWidth='true' sx={{ my: 3, mt: '80px' }}>
           {/* <OptionItem /> */}
           <OptionItemTwo />
+
+          <LineItemRed
+            persianText={'مسیر یادگیری دوره'}
+            englishText={'The course of learning the course'}
+          />
+          <TypeSubText text={'آموزش های دوره اینستاگراف به دو دسته ثابت و متحرک تقسیم میشود , نمونه ثابت همون عکس نوشته هایی هستش که قطعا تو خیلی از پیج ها دیدید، ولی ما برای اولین تو ایران طراحی متحرک بدون نیاز به افترافکت یا بلندر بهتون آموزش دادیم که میتونید نمونه جلسات دوره را پایین همین صفحه ببینید'} />
+          <LineItemRed
+            persianText={'برای دیدن سوالات تصادفی جدیدتر می‌توانید صفحه را رفرش کنید!'}
+            englishText={'Sample projects carried out in the course'}
+          />
+          <ImageStoryBox />
         </Container>
         <Container maxWidth='true'>
           <ItemOption />

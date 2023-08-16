@@ -57,11 +57,13 @@ const LineItemRed = (props) => {
                     sx={{
                         width: '100%',
                         height: '0.1rem',
-                        backgroundColor: 'red ',
+                        backgroundColor: 'rgb(253 52 110) ',
                         display: 'block',
                         position: 'relative',
                         bottom: '-0.2rem',
                         left: 0,
+                        boxShadow: '0px 3px 10px 1px #fd3463',
+
                     }}
                 />
             </Typography>

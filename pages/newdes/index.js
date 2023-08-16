@@ -84,7 +84,7 @@ export default function Login() {
 
         {/* <NavBar /> */}
         <Navbar2 />
-        <Slideshow images={images} />
+        {/* <Slideshow images={images} /> */}
         {/* <Container container="true" sx={{ border: 'solid 1px blue' }}>
           <Grid container sx={{ border: 'solid 1px green', display: 'flex', justifyContent: 'center', marginTop: '20%' }} >
             <Grid sx={{ border: 'solid 1px red', textAlign: 'center', margin: '50px', }} xs={6} md={4} >

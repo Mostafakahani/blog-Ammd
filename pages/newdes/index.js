@@ -3,6 +3,7 @@ import ImageItem from '@/Commponent/ImageItem';
 import ItemOption from '@/Commponent/ItemOption';
 import NavBar from '@/Commponent/Navbar';
 import OptionItem from '@/Commponent/OptionItem';
+import OptionItemTwo from '@/Commponent/OptionItem2';
 import Slideshow from '@/Commponent/SlideShow/SliderHomePage';
 import { Box, Container, Grid, Input, TextField, Typography, styled } from '@mui/material';
 import axios from 'axios';
@@ -84,10 +85,11 @@ export default function Login() {
           </Grid>
         </Container> */}
         <Container maxWidth='true' sx={{ my: 3, mt: '80px' }}>
-          <OptionItem />
+          {/* <OptionItem /> */}
+          <OptionItemTwo />
         </Container>
         <Container maxWidth='true'>
-          <ItemOption/>
+          <ItemOption />
           <ImageItem />
         </Container>
         <Container container='true'>

@@ -36,7 +36,7 @@ const ItemOption = () => {
                 <Grid
                     item
                     xs={12}
-                    sm={6}
+                    sm={5.5}
                     md={2.5}
                     key={index}
                     sx={{

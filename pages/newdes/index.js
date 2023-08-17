@@ -113,7 +113,7 @@ export default function Login() {
             englishText={'Details of the Instagram period'}
           />
           <AboutItems />
-          <ImageItem />
+          {/* <ImageItem /> */}
           <BlogItem />
         </Container>
       </Container>
